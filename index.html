@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- A bunch of security stuff to prevent XSS. It's best to configure these in the web server, but I put them here for now as a reminder.-->
+  <!-- Also, be sure to include "frame-ancestors 'none';" It isn't in the meta tag since it can only be set via the web server config. -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src 'self';
+    style-src 'self';
+    img-src 'self' data: https://*.tile.openstreetmap.org;
+    connect-src 'self';
+    base-uri 'none';
+    form-action 'none';
+    object-src 'none';
+  ">
+  <meta name="referrer" content="no-referrer">
+  <title>PC(USA) Church Map</title>
+
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="vendor/leaflet.markercluster/MarkerCluster.css">
+  <link rel="stylesheet" href="vendor/leaflet.markercluster/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div id="map"></div>
+  <div id="status">Loading churches&hellip;</div>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="vendor/leaflet.markercluster/leaflet.markercluster.js"></script>
+  <script src="app.js"></script>
+
+</body>
+
+</html>
