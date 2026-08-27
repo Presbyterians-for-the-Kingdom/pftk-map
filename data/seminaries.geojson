@@ -1,0 +1,933 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.25616,
+          37.865301
+        ]
+      },
+      "properties": {
+        "name": "Berkeley School of Theology",
+        "city": "Berkeley, CA",
+        "denomination": "ABCUSA",
+        "address": "2606 Dwight Way"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.74071,
+          39.01794
+        ]
+      },
+      "properties": {
+        "name": "Central Baptist Theological Seminary",
+        "city": "Shawnee, KS",
+        "denomination": "ABCUSA",
+        "address": "6601 Monticello Rd"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.60083,
+          43.15593
+        ]
+      },
+      "properties": {
+        "name": "Colgate Rochester Crozer Divinity School",
+        "city": "Rochester, NY",
+        "denomination": "ABCUSA",
+        "address": "20 East Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.07441,
+          41.80198
+        ]
+      },
+      "properties": {
+        "name": "Northern Seminary",
+        "city": "Lisle, IL",
+        "denomination": "ABCUSA",
+        "address": "410 Warrenville Rd"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.35535,
+          40.04677
+        ]
+      },
+      "properties": {
+        "name": "Palmer Theological Seminary",
+        "city": "St. Davids, PA",
+        "denomination": "ABCUSA",
+        "address": "Eastern University"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.45162,
+          37.56396
+        ]
+      },
+      "properties": {
+        "name": "Samuel DeWitt Proctor School of Theology",
+        "city": "Richmond, VA",
+        "denomination": "ABCUSA",
+        "address": "Virginia Union University"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.63872,
+          35.77114
+        ]
+      },
+      "properties": {
+        "name": "Shaw University Divinity School",
+        "city": "Raleigh, NC",
+        "denomination": "ABCUSA",
+        "address": "Shaw University campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.584663,
+          41.797006
+        ]
+      },
+      "properties": {
+        "name": "Lutheran School of Theology at Chicago",
+        "city": "Chicago, IL",
+        "denomination": "ELCA",
+        "address": "5416 S Cornell Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.03298,
+          34.00564
+        ]
+      },
+      "properties": {
+        "name": "Lutheran Theological Southern Seminary",
+        "city": "Columbia, SC",
+        "denomination": "ELCA",
+        "address": "former Columbia campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.17053,
+          44.937854
+        ]
+      },
+      "properties": {
+        "name": "Luther Seminary",
+        "city": "Saint Paul, MN",
+        "denomination": "ELCA",
+        "address": "2481 Como Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.27026,
+          37.8698
+        ]
+      },
+      "properties": {
+        "name": "Pacific Lutheran Theological Seminary",
+        "city": "Berkeley, CA",
+        "denomination": "ELCA",
+        "address": "2000 Center St (GTU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.006389,
+          39.983867
+        ]
+      },
+      "properties": {
+        "name": "Trinity Lutheran Seminary",
+        "city": "Columbus, OH",
+        "denomination": "ELCA",
+        "address": "Capital University/Bexley Hall area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.231777,
+          39.830979
+        ]
+      },
+      "properties": {
+        "name": "United Lutheran Seminary",
+        "city": "Gettysburg, PA",
+        "denomination": "ELCA",
+        "address": "61 Seminary Ridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.191224,
+          40.061981
+        ]
+      },
+      "properties": {
+        "name": "United Lutheran Seminary",
+        "city": "Philadelphia, PA",
+        "denomination": "ELCA",
+        "address": "7301 Germantown Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.685638,
+          42.505034
+        ]
+      },
+      "properties": {
+        "name": "Wartburg Theological Seminary",
+        "city": "Dubuque, IA",
+        "denomination": "ELCA",
+        "address": "333 Wartburg Pl"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.736889,
+          30.289541
+        ]
+      },
+      "properties": {
+        "name": "Austin Presbyterian Theological Seminary",
+        "city": "Austin, TX",
+        "denomination": "PC(USA)",
+        "address": "100 E. 27th St"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.295673,
+          33.767236
+        ]
+      },
+      "properties": {
+        "name": "Columbia Theological Seminary",
+        "city": "Decatur, GA",
+        "denomination": "PC(USA)",
+        "address": "701 S Columbia Dr"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.412801,
+          33.746986
+        ]
+      },
+      "properties": {
+        "name": "Johnson C. Smith Theological Seminary",
+        "city": "Atlanta, GA",
+        "denomination": "PC(USA)",
+        "address": "ITC campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.704931,
+          38.219418
+        ]
+      },
+      "properties": {
+        "name": "Louisville Presbyterian Theological Seminary",
+        "city": "Louisville, KY",
+        "denomination": "PC(USA)",
+        "address": "1044 Alta Vista Rd"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.599079,
+          41.790813
+        ]
+      },
+      "properties": {
+        "name": "McCormick Theological Seminary",
+        "city": "Chicago, IL",
+        "denomination": "PC(USA)",
+        "address": "5416 S Cornell Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.960635,
+          40.47277
+        ]
+      },
+      "properties": {
+        "name": "Pittsburgh Theological Seminary",
+        "city": "Pittsburgh, PA",
+        "denomination": "PC(USA)",
+        "address": "616 N Highland Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.651435,
+          40.349262
+        ]
+      },
+      "properties": {
+        "name": "Princeton Theological Seminary",
+        "city": "Princeton, NJ",
+        "denomination": "PC(USA)",
+        "address": "Mercer St campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.562873,
+          37.974228
+        ]
+      },
+      "properties": {
+        "name": "San Francisco Theological Seminary",
+        "city": "San Anselmo, CA",
+        "denomination": "PC(USA)",
+        "address": "105 Seminary Rd"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.539225,
+          37.574586
+        ]
+      },
+      "properties": {
+        "name": "Union Presbyterian Seminary",
+        "city": "Richmond, VA",
+        "denomination": "PC(USA)",
+        "address": "3401 Brook Rd"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.832879,
+          35.189373
+        ]
+      },
+      "properties": {
+        "name": "Union Presbyterian Seminary",
+        "city": "Charlotte, NC",
+        "denomination": "PC(USA)",
+        "address": "5141 Sharon Rd"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.693303,
+          42.498431
+        ]
+      },
+      "properties": {
+        "name": "University of Dubuque Theological Seminary",
+        "city": "Dubuque, IA",
+        "denomination": "PC(USA)",
+        "address": "University of Dubuque campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.444188,
+          40.486962
+        ]
+      },
+      "properties": {
+        "name": "New Brunswick Theological Seminary",
+        "city": "New Brunswick, NJ",
+        "denomination": "RCA",
+        "address": "35 Seminary Pl"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.104943,
+          42.787967
+        ]
+      },
+      "properties": {
+        "name": "Western Theological Seminary",
+        "city": "Holland, MI",
+        "denomination": "RCA",
+        "address": "101 E 13th St"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.924127,
+          41.311423
+        ]
+      },
+      "properties": {
+        "name": "Berkeley Divinity School at Yale",
+        "city": "New Haven, CT",
+        "denomination": "TEC",
+        "address": "409 Prospect St (Yale Divinity School)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.636929,
+          41.886818
+        ]
+      },
+      "properties": {
+        "name": "Bexley Seabury",
+        "city": "Chicago, IL",
+        "denomination": "TEC",
+        "address": "900 N Michigan Ave offices"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.261131,
+          37.87605
+        ]
+      },
+      "properties": {
+        "name": "Church Divinity School of the Pacific",
+        "city": "Berkeley, CA",
+        "denomination": "TEC",
+        "address": "2451 Ridge Rd"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.961918,
+          40.810624
+        ]
+      },
+      "properties": {
+        "name": "Episcopal Divinity School",
+        "city": "New York, NY",
+        "denomination": "TEC",
+        "address": "Union Theological Seminary campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.005938,
+          40.746468
+        ]
+      },
+      "properties": {
+        "name": "General Theological Seminary",
+        "city": "New York, NY",
+        "denomination": "TEC",
+        "address": "440 W 21st St"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.401319,
+          43.095186
+        ]
+      },
+      "properties": {
+        "name": "Nashotah House",
+        "city": "Nashotah, WI",
+        "denomination": "TEC",
+        "address": "2777 Mission Rd"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.757221,
+          30.308062
+        ]
+      },
+      "properties": {
+        "name": "Seminary of the Southwest",
+        "city": "Austin, TX",
+        "denomination": "TEC",
+        "address": "501 E 32nd St"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.917703,
+          35.203719
+        ]
+      },
+      "properties": {
+        "name": "School of Theology, Sewanee",
+        "city": "Sewanee, TN",
+        "denomination": "TEC",
+        "address": "University of the South campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.089648,
+          38.831427
+        ]
+      },
+      "properties": {
+        "name": "Virginia Theological Seminary",
+        "city": "Alexandria, VA",
+        "denomination": "TEC",
+        "address": "3737 Seminary Rd"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.599254,
+          41.790626
+        ]
+      },
+      "properties": {
+        "name": "Chicago Theological Seminary",
+        "city": "Chicago, IL",
+        "denomination": "UCC",
+        "address": "1407 E 60th St"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.346693,
+          38.592223
+        ]
+      },
+      "properties": {
+        "name": "Eden Theological Seminary",
+        "city": "St. Louis, MO",
+        "denomination": "UCC",
+        "address": "475 E Lockwood Ave, Webster Groves"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.377778,
+          40.630805
+        ]
+      },
+      "properties": {
+        "name": "Moravian University School of Theology",
+        "city": "Bethlehem, PA",
+        "denomination": "UCC",
+        "address": "Moravian University campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.263301,
+          37.876594
+        ]
+      },
+      "properties": {
+        "name": "Pacific School of Religion",
+        "city": "Berkeley, CA",
+        "denomination": "UCC",
+        "address": "1798 Scenic Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.196673,
+          45.057636
+        ]
+      },
+      "properties": {
+        "name": "United Seminary of the Twin Cities",
+        "city": "New Brighton, MN",
+        "denomination": "UCC",
+        "address": "767 Eustis St"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.106167,
+          42.350437
+        ]
+      },
+      "properties": {
+        "name": "Boston University School of Theology",
+        "city": "Boston, MA",
+        "denomination": "UMC",
+        "address": "745 Commonwealth Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.709353,
+          34.101685
+        ]
+      },
+      "properties": {
+        "name": "Claremont School of Theology",
+        "city": "Claremont, CA",
+        "denomination": "UMC",
+        "address": "1325 N College Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.426256,
+          40.758934
+        ]
+      },
+      "properties": {
+        "name": "Drew Theological School",
+        "city": "Madison, NJ",
+        "denomination": "UMC",
+        "address": "Drew University"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.938642,
+          36.001528
+        ]
+      },
+      "properties": {
+        "name": "Duke Divinity School",
+        "city": "Durham, NC",
+        "denomination": "UMC",
+        "address": "Duke West Campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.324013,
+          33.792506
+        ]
+      },
+      "properties": {
+        "name": "Candler School of Theology",
+        "city": "Atlanta, GA",
+        "denomination": "UMC",
+        "address": "Emory University"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.67591,
+          42.055498
+        ]
+      },
+      "properties": {
+        "name": "Garrett-Evangelical Theological Seminary",
+        "city": "Evanston, IL",
+        "denomination": "UMC",
+        "address": "Northwestern University"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.961822,
+          39.676552
+        ]
+      },
+      "properties": {
+        "name": "Iliff School of Theology",
+        "city": "Denver, CO",
+        "denomination": "UMC",
+        "address": "2323 E Iliff Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.037913,
+          40.300157
+        ]
+      },
+      "properties": {
+        "name": "Methodist Theological School in Ohio",
+        "city": "Delaware, OH",
+        "denomination": "UMC",
+        "address": "3081 Columbus Pike"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.646843,
+          38.92958
+        ]
+      },
+      "properties": {
+        "name": "Saint Paul School of Theology",
+        "city": "Leawood, KS",
+        "denomination": "UMC",
+        "address": "Church of the Resurrection campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.577047,
+          35.493006
+        ]
+      },
+      "properties": {
+        "name": "Saint Paul School of Theology",
+        "city": "Oklahoma City, OK",
+        "denomination": "UMC",
+        "address": "Oklahoma City University"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.784602,
+          32.841083
+        ]
+      },
+      "properties": {
+        "name": "Perkins School of Theology",
+        "city": "Dallas, TX",
+        "denomination": "UMC",
+        "address": "SMU campus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.277252,
+          39.739615
+        ]
+      },
+      "properties": {
+        "name": "United Theological Seminary",
+        "city": "Dayton, OH",
+        "denomination": "UMC",
+        "address": "4501 Denlinger Rd"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.07431,
+          38.936356
+        ]
+      },
+      "properties": {
+        "name": "Wesley Theological Seminary",
+        "city": "Washington, DC",
+        "denomination": "UMC",
+        "address": "4500 Massachusetts Ave NW"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.924127,
+          41.311423
+        ]
+      },
+      "properties": {
+        "name": "Andover Newton Seminary at Yale",
+        "city": "New Haven, CT",
+        "denomination": "Interdenominational",
+        "address": "Yale Divinity School, 409 Prospect St"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.412835,
+          33.745957
+        ]
+      },
+      "properties": {
+        "name": "Interdenominational Theological Center",
+        "city": "Atlanta, GA",
+        "denomination": "Interdenominational",
+        "address": "700 Martin Luther King Jr Dr SW"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.048801,
+          18.398757
+        ]
+      },
+      "properties": {
+        "name": "Seminario Evangélico de Puerto Rico",
+        "city": "San Juan, PR",
+        "denomination": "Interdenominational",
+        "address": "776 Ponce de León Ave"
+      }
+    }
+  ]
+}

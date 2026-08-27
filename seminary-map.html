@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mainline Protestant Seminaries</title>
+
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<script src="vendor/leaflet/leaflet.js"></script>
+
+<style>
+html, body {
+    height:100%;
+    margin:0;
+}
+#map {
+    height:100%;
+    width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script>
+
+var map = L.map('map').setView([39.8,-98.6],4);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© OpenStreetMap contributors'
+}).addTo(map);
+
+function group(iconFile){
+    return {
+        layer: L.layerGroup(),
+        icon: L.icon({
+            iconUrl: "denominational-seals/" + iconFile,
+            iconSize: [30,30],      // adjust as needed
+            iconAnchor: [15,15],    // center the logo
+            popupAnchor: [0,-15]
+        })
+    };
+}
+
+var groups = {
+    "ABCUSA": group("baptist.png"),
+    "ELCA": group("lutheran.png"),
+    "PC(USA)": group("presby.png"),
+    "RCA": group("dutchref.png"),
+    "TEC": group("anglican.png"),
+    "UCC": group("congregational.png"),
+    "UMC": group("methodist.png"),
+    "Interdenominational": group("handshake_interdenominational.png")
+};
+
+function add(group,name,city,lat,lon){
+    L.marker([lat,lon],{
+        icon: group.icon
+    })
+    .bindPopup("<b>"+name+"</b><br>"+city)
+    .addTo(group.layer);
+}
+
+function esc(str){
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function isValidSeminaryFeature(f){
+    if (!f || typeof f !== 'object' || f.type !== 'Feature') return false;
+
+    const geom = f.geometry;
+    if (!geom || typeof geom !== 'object' || geom.type !== 'Point') return false;
+
+    const coords = geom.coordinates;
+    if (!Array.isArray(coords) || coords.length < 2) return false;
+    const [lon, lat] = coords;
+    if (!Number.isFinite(lat) || lat < -90 || lat > 90) return false;
+    if (!Number.isFinite(lon) || lon < -180 || lon > 180) return false;
+
+    const props = f.properties;
+    if (!props || typeof props !== 'object') return false;
+    if (typeof props.name !== 'string') return false;
+    if (!groups[props.denomination]) return false;
+
+    return true;
+}
+
+fetch('data/seminaries.geojson')
+    .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+    })
+    .then(data => {
+        if (!data || typeof data !== 'object' || data.type !== 'FeatureCollection' || !Array.isArray(data.features)) {
+            throw new Error('unexpected response shape');
+        }
+
+        for (const feature of data.features) {
+            if (!isValidSeminaryFeature(feature)) continue;
+            const [lon, lat] = feature.geometry.coordinates;
+            const props = feature.properties;
+            add(groups[props.denomination], esc(props.name), esc(props.city), lat, lon);
+        }
+
+        /* Add layers */
+
+        var overlays = {};
+
+        for (var k in groups){
+            groups[k].layer.addTo(map);
+            overlays[k] = groups[k].layer;
+        }
+
+        L.control.layers(null, overlays, {
+            collapsed: false
+        }).addTo(map);
+    })
+    .catch(err => {
+        console.error(err);
+    });
+
+</script>
+
+</body>
+</html>
