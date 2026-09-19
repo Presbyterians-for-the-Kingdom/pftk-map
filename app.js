@@ -4,7 +4,7 @@ const map = L.map('map').setView([39.5, -98.35], 5);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
-  maxNativeZoom: 14,          // ← this is the key line for less detail
+  maxNativeZoom: 12,          // ← this is the key line for less detail
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   updateWhenIdle: false,
   updateWhenZooming: true,
@@ -97,17 +97,15 @@ function sizeLabel(sz) {
 }
 
 function buildPopup(c, lat, lon) {
-  const addr1 = c.address_line_1 ? esc(c.address_line_1) : '';
-  const addr2 = [c.address_city, c.address_state].filter(Boolean).join(', ') + (c.address_zip ? ' ' + c.address_zip : '');
-  const addressParts = [addr1, addr2 ? esc(addr2) : ''].filter(Boolean).join('<br>');
+//  const addr1 = c.address_line_1 ? esc(c.address_line_1) : '';
+//  const addr2 = [c.address_city, c.address_state].filter(Boolean).join(', ') + (c.address_zip ? ' ' + c.address_zip : '');
+  const addressParts = c.full_address;
 
   const rowsParts = [];
   if (c.presbytery) rowsParts.push(`<tr><td class="label">Presbytery</td><td>${esc(c.presbytery)}</td></tr>`);
   if (c.pastor) rowsParts.push(`<tr><td class="label">Pastor</td><td>${esc(c.pastor)}</td></tr>`);
 
-  if (c.size) rowsParts.push(
-    `<tr><td class="label">Size</td><td>${esc(sizeLabel(c.size))}</td></tr>`
-  );
+
   if (c.phone) rowsParts.push(`<tr><td class="label">Phone</td><td>${esc(c.phone)}</td></tr>`);
 
   const mailto = safeMailto(c.email);
@@ -134,7 +132,13 @@ function buildPopup(c, lat, lon) {
       );
     }
   }
+  if (c.lib_level) rowsParts.push(
+    `<tr><td class="label">PftK Rating</td><td>${esc(c.lib_level)}</td></tr>`
+  );
 
+  if (c.size_bucket) rowsParts.push(
+    `<tr><td class="label">Size</td><td>${esc(c.size_bucket)}</td></tr>`
+  );
   let html = `<div class="church-popup">
       <h3>${esc(c.church_name)}</h3>
       <p class="addr">${addressParts}</p>
