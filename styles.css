@@ -19,25 +19,25 @@ html, body {
   padding: 6px 12px;
   border-radius: 6px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-  font-size: 13px;
+  font-size: 17px;
   color: #333;
 }
 
 .church-popup h3 {
   margin: 0 0 6px 0;
-  font-size: 15px;
+  font-size: 19px;
   color: #1a1a1a;
 }
 
 .church-popup .addr {
   margin: 0 0 8px 0;
   color: #444;
-  font-size: 13px;
+  font-size: 17px;
 }
 
 .church-popup table {
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 17px;
 }
 
 .church-popup table td {
@@ -63,7 +63,7 @@ html, body {
   margin-top: 8px;
   padding-top: 6px;
   border-top: 1px solid #eee;
-  font-size: 12px;
+  font-size: 16px;
   color: #666;
   font-style: italic;
 }
