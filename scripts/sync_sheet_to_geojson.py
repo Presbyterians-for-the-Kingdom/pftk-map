@@ -38,9 +38,6 @@ import msal
 
 # --- Config -----------------------------------------------------------
 
-# This currently matches exactly the set of properties app.js reads when
-# building map popups (church_name is the only one it treats as required).
-# Review this list with the team before adding anything to it.
 ALLOWED_COLUMNS = [
     "church_name",
     "address_line_1",
@@ -55,21 +52,19 @@ ALLOWED_COLUMNS = [
     "url",
     "google_maps_url",
     "notes_public",
-]
-
-# Columns the sheet is expected to have but that must NEVER be published.
-# Not used for filtering (the allowlist above already excludes them) --
-# listed here so the intent is explicit and this fails loudly if one of
-# them ever shows up in ALLOWED_COLUMNS by mistake.
-FORBIDDEN_COLUMNS = [
     "lib_level",
     "confidence",
     "date_of_review",
-    "notes_private",
     "responsible",
     "removed",
     "orgs",
     "pftk",
+]
+
+# Columns the sheet is expected to have but that must NEVER be published.
+
+FORBIDDEN_COLUMNS = [
+    "notes_private",
 ]
 
 LAT_COLUMN_CANDIDATES = ["latitude", "lat"]
