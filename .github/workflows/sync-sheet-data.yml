@@ -1,0 +1,48 @@
+name: Sync congregation data from Excel (SharePoint)
+
+on:
+  schedule:
+    # Every 6 hours. Adjust to taste -- e.g. '0 6 * * *' for once daily at 6am UTC.
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write   # needed so the job can push the updated data file
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install msal requests
+
+      - name: Pull sheet and rebuild GeoJSON
+        env:
+          MS_TENANT_ID: ${{ secrets.MS_TENANT_ID }}
+          MS_CLIENT_ID: ${{ secrets.MS_CLIENT_ID }}
+          MS_CLIENT_SECRET: ${{ secrets.MS_CLIENT_SECRET }}
+          MS_SITE_HOSTNAME: ${{ secrets.MS_SITE_HOSTNAME }}
+          MS_SITE_PATH: ${{ secrets.MS_SITE_PATH }}
+          MS_FILE_PATH: ${{ secrets.MS_FILE_PATH }}
+          WORKSHEET_NAME: "Master"
+        run: python scripts/sync_sheet_to_geojson.py
+
+      - name: Commit updated data if it changed
+        run: |
+          git config user.name "pftk-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/PCUSA_Congregations.geojson
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-update congregation map data [skip ci]"
+            git push
+          fi
