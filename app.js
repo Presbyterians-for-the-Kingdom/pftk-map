@@ -56,7 +56,7 @@ map.on('zoomend moveend', function () {
 // double-quoted, so escaping the double quote (and, defensively, the
 // single quote) closes off every injection route through this function.
 function esc(str) {
-  if (!str) return '';
+  if (str === null || str === undefined || str === '') return '';
   return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
