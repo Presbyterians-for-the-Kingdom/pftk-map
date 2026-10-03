@@ -132,7 +132,7 @@ function buildPopup(c, lat, lon) {
       );
     }
   }
-  if (c.lib_level) rowsParts.push(
+  if (c.lib_level !== undefined && c.lib_level !== null) rowsParts.push(...)
     `<tr><td class="label">PftK Rating</td><td>${esc(c.lib_level)}</td></tr>`
   );
 
