@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap');
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: Lexend, sans-serif;
+  color: #0B0924;
+  letter-spacing: 0.08em;
 }
 
 #map {
@@ -15,43 +19,88 @@ html, body {
   top: 10px;
   left: 50px;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.92);
+  background: #F2F3F7;
   padding: 6px 12px;
-  border-radius: 6px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-  font-size: 17px;
-  color: #333;
+  border: 1px solid #0B0924;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(11, 9, 36, 0.12);
+  font-family: Lexend, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #0B0924;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-control.map-legend {
+  background-color: #F2F3F7;
+  background-image: linear-gradient(to bottom, #ffffff 0%, #F2F3F7 16%, #F2F3F7 84%, #ffffff 100%);
+  color: #0B0924;
+  border: 1px solid #0B0924;
+  font-family: Lexend, sans-serif;
+  letter-spacing: 0.08em;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-popup-tip {
+  border: none;
+  background-color: #ffffff;
+  background-image: none;
+  box-shadow: none;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px;
+  font-family: Lexend, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  color: #0B0924;
+}
+
+.church-popup,
+.church-popup h3,
+.church-popup p,
+.church-popup td,
+.church-popup a,
+.church-popup .note {
+  font-family: Lexend, sans-serif;
+  color: #0B0924;
+  letter-spacing: 0.08em;
 }
 
 .church-popup h3 {
   margin: 0 0 6px 0;
-  font-size: 19px;
-  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .church-popup .addr {
   margin: 0 0 8px 0;
-  color: #444;
-  font-size: 17px;
+  font-size: 12px;
 }
 
 .church-popup table {
   border-collapse: collapse;
-  font-size: 17px;
+  font-size: 12px;
 }
 
 .church-popup table td {
   padding: 1px 6px 1px 0;
   vertical-align: top;
+  font-size: 12px;
 }
 
 .church-popup table td.label {
-  color: #777;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .church-popup a {
-  color: #2a6fb0;
   text-decoration: none;
 }
 
@@ -62,12 +111,85 @@ html, body {
 .church-popup .note {
   margin-top: 8px;
   padding-top: 6px;
-  border-top: 1px solid #eee;
-  font-size: 16px;
-  color: #666;
+  border-top: 1px solid rgba(11, 9, 36, 0.18);
+  font-size: 12px;
   font-style: italic;
 }
 
-.presby-marker {
+.leaflet-control.map-legend {
+  width: 320px;
+  max-width: 320px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+  padding: 14px 14px 12px;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.map-legend .legend-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin: 0 0 10px;
+}
+
+.map-legend .legend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.map-legend .legend-num {
+  min-width: 1.2em;
+  font-weight: 600;
+}
+
+.map-legend .legend-note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.map-legend .legend-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(11, 9, 36, 0.18);
+  cursor: pointer;
+}
+
+.map-legend .legend-link {
+  display: block;
+  margin-top: 10px;
+  color: #0B0924;
+  font-size: 12px;
+}
+
+.map-legend .legend-link:hover {
+  text-decoration: underline;
+}
+
+.leaflet-control.map-legend img {
+  display: block;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.leaflet-control.map-legend img.seal-presby {
+  width: 34px;
+  height: 34px;
+}
+
+.leaflet-control.map-legend img.seal-affiliate {
+  width: 38px;
+  height: 38px;
+}
+
+.presby-marker,
+.affiliate-marker {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
 }

@@ -1,16 +1,21 @@
 'use strict';
 
-const map = L.map('map').setView([39.5, -98.35], 5);
+const map = L.map('map', { zoomControl: false }).setView([39.5, -98.35], 5);
+L.control.zoom({ position: 'topright' }).addTo(map);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
-  maxNativeZoom: 12,          // ← this is the key line for less detail
+  maxNativeZoom: 18,          // ← this is the key line for less detail
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   updateWhenIdle: false,
   updateWhenZooming: true,
   referrerPolicy: 'strict-origin-when-cross-origin',   // ← required
 
 }).addTo(map);
+
+// Affiliate pins sit above clustered congregation markers, but under popups.
+map.createPane('affiliates');
+map.getPane('affiliates').style.zIndex = 640;
 
 const churchIcon = L.icon({
   iconUrl: 'denominational-seals/presby.png',
@@ -19,6 +24,32 @@ const churchIcon = L.icon({
   popupAnchor: [0, -32],
   className: 'presby-marker'
 });
+
+const affiliateIcon = L.icon({
+  iconUrl: 'denominational-seals/pftk.png',
+  iconSize: [38, 38],
+  iconAnchor: [19, 38],
+  popupAnchor: [0, -36],
+  className: 'affiliate-marker'
+});
+
+function normalizeRating(value) {
+  if (value === null || value === undefined || value === '') return null;
+  const n = parseInt(String(value).trim(), 10);
+  return n === 1 || n === 2 || n === 3 ? n : null;
+}
+
+// Official affiliates are a separate layer. Accept the common flag names
+// so a geojson export does not have to be renamed before this works.
+function isAffiliate(c) {
+  if (!c || typeof c !== 'object') return false;
+  const flags = [c.affiliate, c.affiliated, c.is_affiliate, c.is_affiliated, c.pftk_affiliate, c.pftk];
+  for (const flag of flags) {
+    if (flag === true || flag === 1) return true;
+    if (typeof flag === 'string' && /^(1|true|yes|y|affiliate|affiliated)$/i.test(flag.trim())) return true;
+  }
+  return false;
+}
 
 const clusters = L.markerClusterGroup({
   maxClusterRadius: 45,
@@ -40,6 +71,9 @@ const clusters = L.markerClusterGroup({
     });
   }
 });
+
+// Not clustered, and added after the cluster group so affiliate pins stay on top.
+const affiliates = L.layerGroup();
 
 let clusterUpdateTimer;
 
@@ -102,6 +136,9 @@ function buildPopup(c, lat, lon) {
   const addressParts = c.full_address;
 
   const rowsParts = [];
+  if (isAffiliate(c)) {
+    rowsParts.push('<tr><td class="label">Status</td><td>PftK affiliate</td></tr>');
+  }
   if (c.presbytery) rowsParts.push(`<tr><td class="label">Presbytery</td><td>${esc(c.presbytery)}</td></tr>`);
   if (c.pastor) rowsParts.push(`<tr><td class="label">Pastor</td><td>${esc(c.pastor)}</td></tr>`);
 
@@ -132,9 +169,16 @@ function buildPopup(c, lat, lon) {
       );
     }
   }
-  if (c.lib_level !== undefined && c.lib_level !== null) rowsParts.push(
-    `<tr><td class="label">PftK Rating</td><td>${esc(c.lib_level)}</td></tr>`
-  );
+  const rating = normalizeRating(c.lib_level);
+  if (rating) {
+    rowsParts.push(
+      `<tr><td class="label">PftK Rating</td><td>${rating}</td></tr>`
+    );
+  } else if (c.lib_level !== undefined && c.lib_level !== null && c.lib_level !== '') {
+    rowsParts.push(
+      `<tr><td class="label">PftK Rating</td><td>${esc(c.lib_level)}</td></tr>`
+    );
+  }
 
   if (c.size_bucket) rowsParts.push(
     `<tr><td class="label">Size</td><td>${esc(c.size_bucket)}</td></tr>`
@@ -151,6 +195,40 @@ function buildPopup(c, lat, lon) {
   html += `</div>`;
   return html;
 }
+
+function addLegend() {
+  const legend = L.control({ position: 'topleft' });
+  legend.onAdd = function () {
+    const div = L.DomUtil.create('div', 'map-legend');
+    div.innerHTML = [
+      '<div class="legend-title">PftK Rating</div>',
+      '<div class="legend-row"><img class="seal-presby" src="denominational-seals/presby.png" alt="" width="34" height="34"><span>PC(USA) church</span></div>',
+      '<div class="legend-row"><span class="legend-num">1</span><span>More moderate; theological conservatives and traditionalists welcome</span></div>',
+      '<div class="legend-row"><span class="legend-num">2</span><span>Good fit for theological conservatives and traditionalists</span></div>',
+      '<div class="legend-row"><span class="legend-num">3</span><span>Great fit for theological conservatives and traditionalists</span></div>',
+      '<p class="legend-note">PftK recommends attending the congregations listed on the map.</p>',
+      '<div class="legend-row"><img class="seal-affiliate" src="denominational-seals/pftk.png" alt="" width="38" height="38"><span>Affiliated church</span></div>',
+      '<p class="legend-note">Official allied congregation of Presbyterians for the Kingdom and openly supports mainline revival.</p>',
+      '<label class="legend-toggle"><input type="checkbox" id="affiliates-only"><span>Affiliates only</span></label>',
+      '<a class="legend-link" href="https://www.pftk.org/map-disclaimer" target="_blank" rel="noopener noreferrer">Map disclaimer</a>'
+    ].join('');
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.disableScrollPropagation(div);
+    return div;
+  };
+  legend.addTo(map);
+
+  const toggle = document.getElementById('affiliates-only');
+  toggle.addEventListener('change', function () {
+    if (toggle.checked) {
+      if (map.hasLayer(clusters)) map.removeLayer(clusters);
+    } else if (!map.hasLayer(clusters)) {
+      map.addLayer(clusters);
+    }
+  });
+}
+
+addLegend();
 
 // Validates a GeoJSON Feature: well-formed Point geometry plus the
 // properties buildPopup() relies on. Coordinates are [lon, lat] per the
@@ -185,18 +263,32 @@ fetch('data/PCUSA_Congregations.geojson')
     }
 
     const markers = [];
+    const affiliateMarkers = [];
     for (const feature of data.features) {
       if (!isValidChurchFeature(feature)) continue;
       const [lon, lat] = feature.geometry.coordinates;
       const c = feature.properties;
+      if (isAffiliate(c)) {
+        const marker = L.marker([lat, lon], {
+          icon: affiliateIcon,
+          pane: 'affiliates',
+          zIndexOffset: 1000
+        });
+        marker.bindPopup(() => buildPopup(c, lat, lon), { maxWidth: 320 });
+        affiliateMarkers.push(marker);
+        continue;
+      }
       const marker = L.marker([lat, lon], { icon: churchIcon });
       marker.bindPopup(() => buildPopup(c, lat, lon), { maxWidth: 320 });
       markers.push(marker);
     }
     clusters.addLayers(markers);
     map.addLayer(clusters);
+    affiliates.addLayer(L.layerGroup(affiliateMarkers));
+    affiliates.addTo(map);
     const el = document.getElementById('status');
-    el.textContent = markers.length.toLocaleString() + ' PC(USA) churches';
+    el.textContent = markers.length.toLocaleString() + ' PC(USA) churches'
+      + (affiliateMarkers.length ? ' · ' + affiliateMarkers.length.toLocaleString() + ' affiliates' : '');
     setTimeout(() => { el.style.display = 'none'; }, 4000);
   })
   .catch(err => {
