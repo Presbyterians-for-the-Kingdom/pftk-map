@@ -6462,6 +6462,26 @@
       }
     },
     {
+      "id": "2195",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.8145523,
+          32.8539114
+        ]
+      },
+      "properties": {
+        "church_name": "Westminster Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "8200 Devonshire Dr, Dallas, TX 75229",
+        "url": "www.wpcd.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
       "id": "2197",
       "type": "Feature",
       "geometry": {
