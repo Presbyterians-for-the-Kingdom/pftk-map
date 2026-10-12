@@ -14762,26 +14762,6 @@
       }
     },
     {
-      "id": "6915",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.0721772,
-          41.22883789999999
-        ]
-      },
-      "properties": {
-        "church_name": "Ebenezer Presbyterian Church",
-        "lib_level": 0,
-        "full_address": "2426 Scrubgrass Rd, Grove City, PA 16127",
-        "url": "www.ebenezerpresbyterianchurchgc.com",
-        "google_maps_url": "https://maps.google.com/?cid=2436560670408395811",
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
       "id": "6917",
       "type": "Feature",
       "geometry": {
