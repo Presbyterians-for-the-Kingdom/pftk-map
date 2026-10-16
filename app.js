@@ -240,7 +240,7 @@ function addLegend() {
       '<div class="legend-row"><img class="seal-affiliate" src="denominational-seals/pftk.png" alt="" width="38" height="38"><span>Affiliated Congregation</span></div>',
       '<p class="legend-note">Official allied congregation of Presbyterians for the Kingdom that openly supports mainline revival.</p>',
       '<label class="legend-toggle"><input type="checkbox" id="affiliates-only"><span>Affiliates only</span></label>',
-      '<a class="legend-link" href="https://www.pftk.org/map-disclaimer" target="_blank" rel="noopener noreferrer">Map disclaimer</a>',
+      '<a class="legend-link" href="https://www.pftk.org/map-disclaimer" target="_blank" rel="noopener noreferrer">Map disclaimer and size explanation</a>',
       '</div>'
     ].join('');
     L.DomEvent.disableClickPropagation(div);
