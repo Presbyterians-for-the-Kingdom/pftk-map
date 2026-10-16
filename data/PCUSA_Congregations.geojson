@@ -442,26 +442,6 @@
       }
     },
     {
-      "id": "107",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -92.2708578,
-          34.7407677
-        ]
-      },
-      "properties": {
-        "church_name": "First Church Downtown Little Rock NCD Presbyterian Church",
-        "lib_level": 1,
-        "full_address": "800 Scott St, Little Rock, AR 72201",
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
       "id": "108",
       "type": "Feature",
       "geometry": {
@@ -1582,26 +1562,6 @@
       }
     },
     {
-      "id": "489",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -121.528137,
-          45.9973427
-        ]
-      },
-      "properties": {
-        "church_name": "First Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": "XS",
-        "affiliate": null
-      }
-    },
-    {
       "id": "491",
       "type": "Feature",
       "geometry": {
@@ -1678,26 +1638,6 @@
         "url": "www.kpccor.org",
         "google_maps_url": null,
         "size_bucket": "XS",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "499",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -124.1751136,
-          43.5756704
-        ]
-      },
-      "properties": {
-        "church_name": "Lakeside Community Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
         "affiliate": null
       }
     },
@@ -3942,6 +3882,66 @@
       }
     },
     {
+      "id": "1453",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.5010344,
+          40.0325052
+        ]
+      },
+      "properties": {
+        "church_name": "Columbia Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "360 Locust St, Columbia, PA 17512",
+        "url": "www.columbiahas.org",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "1456",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.56627449999999,
+          40.1011788
+        ]
+      },
+      "properties": {
+        "church_name": "Donegal Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "1891 Donegal Springs Rd, Mount Joy, PA 17552",
+        "url": "www.donegalpc.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "1457",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.6790532,
+          39.9686098
+        ]
+      },
+      "properties": {
+        "church_name": "Eastminster Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "311 Haines Rd, York, PA 17402-3439",
+        "url": "www.eastminster-york.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
       "id": "1460",
       "type": "Feature",
       "geometry": {
@@ -3958,6 +3958,26 @@
         "url": "www.straspres.org",
         "google_maps_url": "https://maps.google.com/?cid=14085402059260557362",
         "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "1469",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.1216929,
+          40.0087958
+        ]
+      },
+      "properties": {
+        "church_name": "Leacock Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "3181 Lincoln Hwy E, Paradise, PA 17562",
+        "url": "www.leacockpres.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
         "affiliate": null
       }
     },
@@ -3998,6 +4018,26 @@
         "url": "www.paolipres.org",
         "google_maps_url": null,
         "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "1476",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.3687238,
+          39.8041627
+        ]
+      },
+      "properties": {
+        "church_name": "Pine Grove Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "4263 Delta Rd, Airville, PA 17302",
+        "url": "www.southernyorkcounty.com/churches/pinegrove",
+        "google_maps_url": "https://maps.google.com/?cid=1198841418594355713",
+        "size_bucket": "XS",
         "affiliate": null
       }
     },
@@ -4522,26 +4562,6 @@
       }
     },
     {
-      "id": "1710",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.1135709,
-          44.4176525
-        ]
-      },
-      "properties": {
-        "church_name": "Community Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": "XS",
-        "affiliate": null
-      }
-    },
-    {
       "id": "1711",
       "type": "Feature",
       "geometry": {
@@ -4555,26 +4575,6 @@
         "church_name": "Community Presbyterian Church",
         "lib_level": 1,
         "full_address": "101 S Alba St, Ukiah, OR 97880",
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": "XS",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "1712",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.3676316,
-          45.906319
-        ]
-      },
-      "properties": {
-        "church_name": "Community Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
         "url": null,
         "google_maps_url": null,
         "size_bucket": "XS",
@@ -5775,7 +5775,7 @@
         "church_name": "Richland Presbyterian Church",
         "lib_level": 0,
         "full_address": "821 Poplar Springs Rd, Westminster, SC 29693",
-        "url": null,
+        "url": "https://www.facebook.com/RichlandPresbyterianChurch/",
         "google_maps_url": "https://maps.google.com/?cid=2183468160124225242",
         "size_bucket": "XS",
         "affiliate": true
@@ -6262,26 +6262,6 @@
       }
     },
     {
-      "id": "2159",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -95.86329959999999,
-          32.5565244
-        ]
-      },
-      "properties": {
-        "church_name": "First Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
       "id": "2160",
       "type": "Feature",
       "geometry": {
@@ -6458,26 +6438,6 @@
         "url": null,
         "google_maps_url": null,
         "size_bucket": "XS",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "2181",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -94.87289559999999,
-          32.3891032
-        ]
-      },
-      "properties": {
-        "church_name": "First Presbyterian Church",
-        "lib_level": 1,
-        "full_address": "P O Box 1216, KILGORE, TX 75663",
-        "url": "firstpreskilgore.org",
-        "google_maps_url": null,
-        "size_bucket": "S",
         "affiliate": null
       }
     },
@@ -6896,26 +6856,6 @@
         "lib_level": 1,
         "full_address": "5905 Stonewall St, Greenville, TX 75402",
         "url": "www.upctx.org",
-        "google_maps_url": null,
-        "size_bucket": "S",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "2258",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.8145523,
-          32.8539114
-        ]
-      },
-      "properties": {
-        "church_name": "Westminster Presbyterian Church",
-        "lib_level": 0,
-        "full_address": "8200 Devonshire Dr, Dallas, TX 75229",
-        "url": "www.wpcd.org",
         "google_maps_url": null,
         "size_bucket": "S",
         "affiliate": null
@@ -7762,26 +7702,6 @@
       }
     },
     {
-      "id": "2919",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -116.3934881,
-          46.85879
-        ]
-      },
-      "properties": {
-        "church_name": "Bovill Community Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": "XS",
-        "affiliate": null
-      }
-    },
-    {
       "id": "2921",
       "type": "Feature",
       "geometry": {
@@ -7798,26 +7718,6 @@
         "url": null,
         "google_maps_url": null,
         "size_bucket": "XS",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "2922",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -117.2426823,
-          47.1282275
-        ]
-      },
-      "properties": {
-        "church_name": "Community Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": "www.cpcoakesdale.org",
-        "google_maps_url": null,
-        "size_bucket": "S",
         "affiliate": null
       }
     },
@@ -8238,26 +8138,6 @@
         "url": "www.pullmanpc.org",
         "google_maps_url": "https://maps.google.com/?cid=7753090588686077536",
         "size_bucket": "S",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "2951",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -116.0279816,
-          46.2272488
-        ]
-      },
-      "properties": {
-        "church_name": "Second Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": "XS",
         "affiliate": null
       }
     },
@@ -11202,26 +11082,6 @@
       }
     },
     {
-      "id": "4388",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.6499793,
-          39.3095135
-        ]
-      },
-      "properties": {
-        "church_name": "First Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": "www.firstpresvc.org",
-        "google_maps_url": null,
-        "size_bucket": "XS",
-        "affiliate": null
-      }
-    },
-    {
       "id": "4390",
       "type": "Feature",
       "geometry": {
@@ -11418,26 +11278,6 @@
         "url": "vpcmesquite.org",
         "google_maps_url": "https://maps.google.com/?cid=11871631643993680946",
         "size_bucket": "S",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "4403",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.96449,
-          41.1115888
-        ]
-      },
-      "properties": {
-        "church_name": "Wells Presbyterian Church",
-        "lib_level": 1,
-        "full_address": "PO Box 251, Wells, NV 89835, USA",
-        "url": null,
-        "google_maps_url": "https://maps.google.com/?cid=5362344027095539423",
-        "size_bucket": "XS",
         "affiliate": null
       }
     },
@@ -12302,6 +12142,226 @@
       }
     },
     {
+      "id": "4538",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.886912,
+          33.7606844
+        ]
+      },
+      "properties": {
+        "church_name": "Celebration Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "2300 Carolina Forest Blvd, Myrtle Beach, SC 29579",
+        "url": "celebrationpresbyterianchurch.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4539",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.08948980000001,
+          34.7357619
+        ]
+      },
+      "properties": {
+        "church_name": "Chesterfield Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "209 W Main St, Chesterfield, SC 29709-1514",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4540",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2091997,
+          33.8748529
+        ]
+      },
+      "properties": {
+        "church_name": "Congruity Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "3750 Congruity Church Rd, Sumter, SC 29151",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4542",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4021427,
+          34.0174388
+        ]
+      },
+      "properties": {
+        "church_name": "Ebenezer Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "4620 Queen Chapel Rd, Dalzell, SC 29040",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4543",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.68392039999999,
+          34.615081
+        ]
+      },
+      "properties": {
+        "church_name": "First Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "130 Broad St, Bennettsville, SC 29512",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4544",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.8862073,
+          34.6966715
+        ]
+      },
+      "properties": {
+        "church_name": "First Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "300 Market St, Cheraw, SC 29520",
+        "url": "www.cherawfpc.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4549",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3429908,
+          33.9245237
+        ]
+      },
+      "properties": {
+        "church_name": "First Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "9 W Calhoun St, Sumter, SC 29150-4216",
+        "url": "www.fpcsumter.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4554",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.28404189999999,
+          33.3778566
+        ]
+      },
+      "properties": {
+        "church_name": "Georgetown Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "558 Black River Rd, Georgetown, SC 29440-3302",
+        "url": "www.georgetownpresbyterian.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4555",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1496347,
+          33.9133838
+        ]
+      },
+      "properties": {
+        "church_name": "Goodwill Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "295 N Brick Church Rd, Mayesville, SC 29104",
+        "url": "www.goodwillpresch1867.com",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4558",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.354074,
+          34.0566651
+        ]
+      },
+      "properties": {
+        "church_name": "Hebron Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "4870 DuBose Siding Rd, Sumter, SC 29153",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": null,
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4559",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.5609869,
+          33.7248385
+        ]
+      },
+      "properties": {
+        "church_name": "Indiantown Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "4865 Hemingway Hwy, Hemingway, SC 29554-9768",
+        "url": "www.facebook.com/indiantownpresbyterianchurch/",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
       "id": "4560",
       "type": "Feature",
       "geometry": {
@@ -12322,6 +12382,26 @@
       }
     },
     {
+      "id": "4561",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.794513,
+          34.1559369
+        ]
+      },
+      "properties": {
+        "church_name": "John Calvin Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "2000 Marsh Ave, Florence, SC 29505-2937",
+        "url": "www.johncalvinflorence.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
       "id": "4562",
       "type": "Feature",
       "geometry": {
@@ -12338,6 +12418,66 @@
         "url": "https://www.facebook.com/p/Kentyre-Presbyterian-Church-100067029793219/",
         "google_maps_url": null,
         "size_bucket": null,
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4563",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0445081,
+          33.835858
+        ]
+      },
+      "properties": {
+        "church_name": "Kingston Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "800 3rd Ave, Conway, SC 29526-5141",
+        "url": "www.kingstonpc.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4565",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.75010549999999,
+          33.8710247
+        ]
+      },
+      "properties": {
+        "church_name": "Lake City Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "300 E Main St, Lake City, SC 29560",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4567",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2112487,
+          33.7003724
+        ]
+      },
+      "properties": {
+        "church_name": "Manning Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "233 N Brooks St, Manning, SC 29102",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "S",
         "affiliate": null
       }
     },
@@ -12402,6 +12542,86 @@
       }
     },
     {
+      "id": "4574",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2283049,
+          34.1005758
+        ]
+      },
+      "properties": {
+        "church_name": "Mt Zion Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "4544 St. Charles Road, Bishopville, SC 29010, Bishopville, SC 29010",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4575",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0456525,
+          33.5515034
+        ]
+      },
+      "properties": {
+        "church_name": "Murrells Inlet Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "4499 US 17 Bypass, Murrells Inlet, SC 29576",
+        "url": "www.mipresby.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4576",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.3577857,
+          34.4023933
+        ]
+      },
+      "properties": {
+        "church_name": "New Bethel Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "900 Perry St, Dillon, SC 29536",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4577",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3460668,
+          33.9424142
+        ]
+      },
+      "properties": {
+        "church_name": "New Covenant United Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "907 Legare St, Sumter, SC 29150",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
       "id": "4579",
       "type": "Feature",
       "geometry": {
@@ -12422,22 +12642,42 @@
       }
     },
     {
-      "id": "4580",
+      "id": "4581",
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.0459001,
-          34.5745999
+          -79.1359868,
+          33.4358305
         ]
       },
       "properties": {
-        "church_name": "Patrick Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
+        "church_name": "Pawleys Island Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "9967 Ocean Hwy, Pawleys Island, SC 29585",
+        "url": "www.pawleyschurch.com",
+        "google_maps_url": "https://maps.google.com/?cid=1081045284597280463",
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4583",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1608435,
+          33.9325878
+        ]
+      },
+      "properties": {
+        "church_name": "Salem Black River Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "1060 North Brick Church Road, Mayesville, SC 29104",
         "url": null,
         "google_maps_url": null,
-        "size_bucket": null,
+        "size_bucket": "XS",
         "affiliate": null
       }
     },
@@ -12455,6 +12695,86 @@
         "church_name": "Society Hill Presbyterian Church",
         "lib_level": 1,
         "full_address": "308 Pressley Ave, Society Hill, SC 29593",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4586",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.44547179999999,
+          33.7655149
+        ]
+      },
+      "properties": {
+        "church_name": "St Paul's Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "567 N Main St, Hemingway, SC 29554",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4587",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3517497,
+          33.6055302
+        ]
+      },
+      "properties": {
+        "church_name": "Summerton Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "16 S Cantey St, Summerton, SC 29148",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4588",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3729474,
+          33.9237287
+        ]
+      },
+      "properties": {
+        "church_name": "Swan Lake Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "912 Haynsworth St, Sumter, SC 29150-3824",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4590",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2055728,
+          33.9876296
+        ]
+      },
+      "properties": {
+        "church_name": "Trinity Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "136 S Main St, Mayesville, SC 29104",
         "url": null,
         "google_maps_url": null,
         "size_bucket": "XS",
@@ -12482,6 +12802,46 @@
       }
     },
     {
+      "id": "4593",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.19413209999999,
+          33.8221744
+        ]
+      },
+      "properties": {
+        "church_name": "Westminster Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "9124 Plowden Mill Rd, Alcolu, SC 29001",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "4595",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.8324239,
+          33.6685656
+        ]
+      },
+      "properties": {
+        "church_name": "Williamsburg Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "411 N Academy St, Kingstree, SC 29556-3405",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
       "id": "4601",
       "type": "Feature",
       "geometry": {
@@ -12498,26 +12858,6 @@
         "url": "www.blacknall.org",
         "google_maps_url": "https://maps.google.com/?cid=5226578373484366887",
         "size_bucket": "L",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "4603",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -78.7589558,
-          36.1547207
-        ]
-      },
-      "properties": {
-        "church_name": "Butner Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": "www.butnerpresbyterianchurch.org",
-        "google_maps_url": null,
-        "size_bucket": "XS",
         "affiliate": null
       }
     },
@@ -12915,7 +13255,7 @@
         "church_name": "Trinity Presbyterian Church",
         "lib_level": 0,
         "full_address": "1003 Albert Rains Blvd, Gadsden, AL 35901",
-        "url": null,
+        "url": "https://www.trinitypresbyteriangadsden.org/about-us",
         "google_maps_url": "https://www.google.com/maps?cid=9942742543788078441",
         "size_bucket": "XS",
         "affiliate": true
@@ -14242,26 +14582,6 @@
       }
     },
     {
-      "id": "5337",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -132.8275439,
-          55.2074214
-        ]
-      },
-      "properties": {
-        "church_name": "Hydaburg Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
       "id": "5340",
       "type": "Feature",
       "geometry": {
@@ -14318,26 +14638,6 @@
         "url": "www.meadow-springs.org",
         "google_maps_url": null,
         "size_bucket": "S",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "5345",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -131.5744824,
-          55.12878600000001
-        ]
-      },
-      "properties": {
-        "church_name": "Metlakatla Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
         "affiliate": null
       }
     },
@@ -15242,26 +15542,6 @@
       }
     },
     {
-      "id": "5531",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -102.3249022,
-          33.9173148
-        ]
-      },
-      "properties": {
-        "church_name": "First Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
       "id": "5533",
       "type": "Feature",
       "geometry": {
@@ -15662,6 +15942,46 @@
       }
     },
     {
+      "id": "5587",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.00071820000001,
+          40.2896176
+        ]
+      },
+      "properties": {
+        "church_name": "Anchor Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "980 Durham Rd, Wrightstown, PA 18940",
+        "url": "the-anchor.church",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5589",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.4056712,
+          39.8569839
+        ]
+      },
+      "properties": {
+        "church_name": "Aston Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "2401 Baldwin Run Dr, Aston, PA 19014",
+        "url": "www.astonpresbyterianchurch.org",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
       "id": "5594",
       "type": "Feature",
       "geometry": {
@@ -15682,21 +16002,41 @@
       }
     },
     {
-      "id": "5598",
+      "id": "5597",
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -75.16311929999999,
-          40.1085932
+          -75.1424251,
+          40.0894086
         ]
       },
       "properties": {
-        "church_name": "Carmel Presbyterian Church",
-        "lib_level": 0,
-        "full_address": "100 Edge Hill Rd, Glenside, PA 19038-3099",
-        "url": "www.presbycarmel.org",
-        "google_maps_url": "https://maps.google.com/?cid=14613121319368537682",
+        "church_name": "Calvary Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "217 Fernbrook Ave, Wyncote, PA 19095",
+        "url": "www.calvarypreswyncote.org",
+        "google_maps_url": null,
+        "size_bucket": null,
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5599",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.16134009999999,
+          40.0707888
+        ]
+      },
+      "properties": {
+        "church_name": "Cedar Park Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "7740 Limeklin Pike, Philadelphia, PA 19150-1831",
+        "url": "www.cedarparkpresby.org",
+        "google_maps_url": null,
         "size_bucket": "S",
         "affiliate": null
       }
@@ -15722,6 +16062,66 @@
       }
     },
     {
+      "id": "5601",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3297663,
+          39.9027754
+        ]
+      },
+      "properties": {
+        "church_name": "Chambers Memorial Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "2 E Sylvan Ave, Rutledge, PA 19070-2123",
+        "url": "chamberschurch.org",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5603",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2906805,
+          39.9470408
+        ]
+      },
+      "properties": {
+        "church_name": "Christ's Community Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "337 Riverview Ave, Drexel Hill, PA 19026",
+        "url": "www.ccchurch.co",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5607",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.5087131,
+          39.8668005
+        ]
+      },
+      "properties": {
+        "church_name": "Concord Liberty Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "256 Bethel Rd, Glen Mills, PA 19342-1533",
+        "url": "www.concordliberty.org",
+        "google_maps_url": "https://maps.google.com/?cid=12860395100472586856",
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
       "id": "5608",
       "type": "Feature",
       "geometry": {
@@ -15733,7 +16133,7 @@
       },
       "properties": {
         "church_name": "Crossroads Presbyterian Church",
-        "lib_level": 0,
+        "lib_level": 1,
         "full_address": "10 W Cherry Ln, Limerick, PA 19468-1302",
         "url": "www.crossroadspresbyterian.org",
         "google_maps_url": "https://maps.google.com/?cid=14697844984154313898",
@@ -15762,22 +16162,22 @@
       }
     },
     {
-      "id": "5610",
+      "id": "5611",
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -75.1287665,
-          40.3135594
+          -74.9247462,
+          40.0911133
         ]
       },
       "properties": {
-        "church_name": "Doylestown Presbyterian Church",
+        "church_name": "Eddington Presbyterian Church",
         "lib_level": 0,
-        "full_address": "127 E Court St, Doylestown, PA 18901-3860",
-        "url": "www.dtownpc.org",
-        "google_maps_url": "https://maps.google.com/?cid=17053463183200044661",
-        "size_bucket": "L",
+        "full_address": "3650 Bristol Pike, Bensalem, PA 19020",
+        "url": "epch.us/",
+        "google_maps_url": null,
+        "size_bucket": null,
         "affiliate": null
       }
     },
@@ -15793,11 +16193,31 @@
       },
       "properties": {
         "church_name": "Elkins Park Presbyterian Church",
-        "lib_level": 0,
+        "lib_level": 1,
         "full_address": "234 Cedar Rd, Elkins Park, PA 19027",
         "url": "www.eppchurch.org",
         "google_maps_url": "https://maps.google.com/?cid=3442484386943208289",
         "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5614",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.09114269999999,
+          40.1989678
+        ]
+      },
+      "properties": {
+        "church_name": "First PC of Warminster Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "500 Madison Ave, Warminster, PA 18974-4698",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "M",
         "affiliate": null
       }
     },
@@ -15813,7 +16233,7 @@
       },
       "properties": {
         "church_name": "First Presbyterian Church",
-        "lib_level": 0,
+        "lib_level": 1,
         "full_address": "4 S Ridge Ave, Ambler, PA 19002-4743",
         "url": "www.fpcambler.org",
         "google_maps_url": "https://maps.google.com/?cid=7305382184663421681",
@@ -15822,22 +16242,22 @@
       }
     },
     {
-      "id": "5616",
+      "id": "5618",
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -75.2907802,
-          40.0102668
+          -75.2884285,
+          39.9012315
         ]
       },
       "properties": {
         "church_name": "First Presbyterian Church",
-        "lib_level": 1,
-        "full_address": "5 W Montgomery Ave, Ardmore, PA 19003-1599",
-        "url": "ardmorepres.org",
+        "lib_level": 0,
+        "full_address": "2 S Chester Pk, Glenolden, PA 19036",
+        "url": "glenoldenpresby.org/",
         "google_maps_url": null,
-        "size_bucket": null,
+        "size_bucket": "S",
         "affiliate": null
       }
     },
@@ -15882,6 +16302,246 @@
       }
     },
     {
+      "id": "5625",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3342898,
+          39.9356775
+        ]
+      },
+      "properties": {
+        "church_name": "First Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "356 Summit Rd, Springfield, PA 19064-9998",
+        "url": "www.fpcspringfield.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5626",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0609915,
+          40.2931284
+        ]
+      },
+      "properties": {
+        "church_name": "Forest Grove Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "1856 Forest Grove Rd, Forest Grove, PA 18922",
+        "url": "www.forestgrovechurch.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5630",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.1830334,
+          40.038524
+        ]
+      },
+      "properties": {
+        "church_name": "Germantown Community Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "6141 Greene St, Philadelphia, PA 19144",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5633",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.30467469999999,
+          40.2233948
+        ]
+      },
+      "properties": {
+        "church_name": "Gwynedd Square Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "837 Sumneytown Pike, Lansdale, PA 19446-5303",
+        "url": "www.gwyneddsquare.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5634",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3107599,
+          39.9003622
+        ]
+      },
+      "properties": {
+        "church_name": "Holmes Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "375 Holmes Rd, Holmes, PA 19043",
+        "url": "www.holmespreschurch.org",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5635",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.14217909999999,
+          40.0267909
+        ]
+      },
+      "properties": {
+        "church_name": "Holy Trinity Bethlehem Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "1100 W Rockland St, Philadelphia, PA 19141-3422",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5636",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0722773,
+          40.20820399999999
+        ]
+      },
+      "properties": {
+        "church_name": "Ivyland Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "51 Gough Ave, Ivyland, PA 18974",
+        "url": "www.ivylandpresbyterian.org",
+        "google_maps_url": null,
+        "size_bucket": null,
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5637",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2501224,
+          39.9860975
+        ]
+      },
+      "properties": {
+        "church_name": "Japanese Christian Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "6301 Drexel Rd, Philadelphia, PA 19151",
+        "url": "www.japanesechristianchurch.org",
+        "google_maps_url": null,
+        "size_bucket": null,
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5638",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3756034,
+          40.1317723
+        ]
+      },
+      "properties": {
+        "church_name": "Jeffersonville Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "1921 W Main St, Norristown, PA 19403",
+        "url": "jeffersonvillepresbyterian.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5641",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.1926242,
+          40.2950288
+        ]
+      },
+      "properties": {
+        "church_name": "Lenape Valley Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "321 W Butler Ave, New Britain, PA 18901",
+        "url": "www.lenapevalleychurch.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5642",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.21842529999999,
+          40.037204
+        ]
+      },
+      "properties": {
+        "church_name": "Leverington Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "6301 Ridge Ave, Philadelphia, PA 19128-2527",
+        "url": "www.levpres.org",
+        "google_maps_url": null,
+        "size_bucket": null,
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5646",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3039396,
+          40.1004606
+        ]
+      },
+      "properties": {
+        "church_name": "Lower Providence Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "3050 W Ridge Pike, Norristown, PA 19403-1581",
+        "url": "www.lppcmin.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
       "id": "5649",
       "type": "Feature",
       "geometry": {
@@ -15913,11 +16573,31 @@
       },
       "properties": {
         "church_name": "Middletown Presbyterian Church",
-        "lib_level": 1,
+        "lib_level": 0,
         "full_address": "273 S Old Middletown Rd, Media, PA 19063-4854",
         "url": "www.middletownpres.org",
         "google_maps_url": "https://maps.google.com/?cid=9949880230119807898",
         "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5652",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7867847,
+          40.2161869
+        ]
+      },
+      "properties": {
+        "church_name": "Morrisville Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "771 N Pennsylvania Ave, Morrisville, PA 19067",
+        "url": "www.mpcusa.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
         "affiliate": null
       }
     },
@@ -15937,6 +16617,206 @@
         "full_address": "1401 Meetinghouse Rd, Warmister, PA 18974",
         "url": "nwpc.net/",
         "google_maps_url": "https://maps.google.com/?cid=9968130429969130236",
+        "size_bucket": null,
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5657",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9326363,
+          40.2294737
+        ]
+      },
+      "properties": {
+        "church_name": "Newtown Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "25 N Chancellor St, Newtown, PA 18940-2201",
+        "url": "www.newtownpres.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5658",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.40587099999999,
+          39.9961513
+        ]
+      },
+      "properties": {
+        "church_name": "Newtown Square Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "3600 Goshen Rd, Newtown Square, PA 19073-2421",
+        "url": "newtownsquarepres.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5659",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.37223019999999,
+          40.1590966
+        ]
+      },
+      "properties": {
+        "church_name": "Norriton Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "608 N Trooper Rd, Norristown, PA 19403",
+        "url": "www.norritonchurch.com",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5660",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9769282,
+          40.1819796
+        ]
+      },
+      "properties": {
+        "church_name": "Northampton Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "539 Buck Rd, Holland, PA 18966",
+        "url": "www.northamptonpresby.org",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5663",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.174298,
+          39.9665701
+        ]
+      },
+      "properties": {
+        "church_name": "Olivet Covenant Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "608 N 22nd St, Philadelphia, PA 19130",
+        "url": "www.olivetcovenant.com",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5664",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.127775,
+          40.0343223
+        ]
+      },
+      "properties": {
+        "church_name": "Olney First Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "5435 N 3rd St, Philadelphia, PA 19120",
+        "url": "www.fpcolney.org",
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5665",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2528756,
+          39.9881587
+        ]
+      },
+      "properties": {
+        "church_name": "Overbrook Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "6376 City Ave, Philadelphia, PA 19151-2505",
+        "url": "www.overbrookpresb.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5666",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.18462280000001,
+          40.0710247
+        ]
+      },
+      "properties": {
+        "church_name": "Oxford Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "8501 Stenton Ave, Philadelphia, PA 19150-3231",
+        "url": "www.oxfordpc.org",
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5668",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.158864,
+          40.0411067
+        ]
+      },
+      "properties": {
+        "church_name": "PC of Pakistan Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "738 E Penn St, Philadelphia, PA 19144",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": null,
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5671",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0619809,
+          40.0578274
+        ]
+      },
+      "properties": {
+        "church_name": "Rhawnhurst Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "7701 Loretto Ave, Phila, PA 19111",
+        "url": "www.rhawnhurstpc.org",
+        "google_maps_url": null,
         "size_bucket": null,
         "affiliate": null
       }
@@ -15982,26 +16862,6 @@
       }
     },
     {
-      "id": "5675",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.1766385,
-          40.1761698
-        ]
-      },
-      "properties": {
-        "church_name": "Seoul NCD Presbyterian Church",
-        "lib_level": 0,
-        "full_address": "855 Welsh Rd, Maple Glen, PA 19002",
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
       "id": "5679",
       "type": "Feature",
       "geometry": {
@@ -16013,11 +16873,71 @@
       },
       "properties": {
         "church_name": "Supplee Memorial Presbyterian Church",
-        "lib_level": 0,
+        "lib_level": 1,
         "full_address": "855 E Welsh Rd, Maple Glen, PA 19002-2929",
         "url": "www.suppleepc.org",
         "google_maps_url": "https://maps.google.com/?cid=15984739509320607568",
         "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5689",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3681222,
+          39.9022495
+        ]
+      },
+      "properties": {
+        "church_name": "Wallingford Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "110 E Brookhaven Rd, Wallingford, PA 19086",
+        "url": "www.wallingfordpres.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5690",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3869119,
+          40.0445293
+        ]
+      },
+      "properties": {
+        "church_name": "Wayne Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "125 E Lancaster Ave, Wayne, PA 19087-3541",
+        "url": "www.waynepres.org",
+        "google_maps_url": null,
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5692",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2102372,
+          40.0195667
+        ]
+      },
+      "properties": {
+        "church_name": "Wissahickon Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "5245 Ridge Ave, Philadelphia, PA 19128-3797",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": null,
         "affiliate": null
       }
     },
@@ -16033,11 +16953,31 @@
       },
       "properties": {
         "church_name": "Woodside Presbyterian Church",
-        "lib_level": 0,
+        "lib_level": 1,
         "full_address": "1667 Edgewood Road, Yardley, PA 19067",
         "url": "www.woodside-church.org",
         "google_maps_url": "https://maps.google.com/?cid=10942564403538549920",
         "size_bucket": "L",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5696",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2527044,
+          39.9372843
+        ]
+      },
+      "properties": {
+        "church_name": "Yeadon Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "541 Holly Rd, Yeadon, PA 19050-3216",
+        "url": "www.yeadonpresbyterianchurch.org",
+        "google_maps_url": null,
+        "size_bucket": "XS",
         "affiliate": null
       }
     },
@@ -16397,6 +17337,86 @@
         "full_address": "2500 N. Garfield Ave, Loveland, CO 80538-3234",
         "url": "www.mymvpc.com",
         "google_maps_url": "https://maps.google.com/?cid=4624296406958082793",
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5904",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.1183588,
+          18.4645714
+        ]
+      },
+      "properties": {
+        "church_name": "Hugh O Neill Memorial Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "61 Fortaleza St, San Juan, PR 901",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5905",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.8327572,
+          18.3802569
+        ]
+      },
+      "properties": {
+        "church_name": "Iglesia Rio Grande Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "Calle Pimentel #41, Rio Grande, PR 745",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5926",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.0226297,
+          18.4561305
+        ]
+      },
+      "properties": {
+        "church_name": "Jobos Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "Apartado 57, Isabela, PR 662",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "5933",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.0277881,
+          18.4691576
+        ]
+      },
+      "properties": {
+        "church_name": "Mt Clair Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "3191 Avenida Militar, Isabela, PR 662",
+        "url": null,
+        "google_maps_url": null,
         "size_bucket": "M",
         "affiliate": null
       }
@@ -17958,26 +18978,6 @@
         "url": null,
         "google_maps_url": null,
         "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
-      "id": "6529",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.7829107,
-          36.3007835
-        ]
-      },
-      "properties": {
-        "church_name": "Lemoore Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": "S",
         "affiliate": null
       }
     },
@@ -19682,26 +20682,6 @@
       }
     },
     {
-      "id": "6990",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -116.31371,
-          43.64937
-        ]
-      },
-      "properties": {
-        "church_name": "Covenant Presbyterian Church (Boise, ID)",
-        "lib_level": 0,
-        "full_address": "4848 N Five Mile Rd, Boise, ID  83713-1824",
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": "M",
-        "affiliate": null
-      }
-    },
-    {
       "id": "6996",
       "type": "Feature",
       "geometry": {
@@ -20378,26 +21358,6 @@
         "url": "https://www.facebook.com/pages/Nettleton%20Presbyterian%20Church/144093728946786/",
         "google_maps_url": "https://maps.google.com/?cid=15551436333223375559",
         "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
-      "id": "7366",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -88.9506181,
-          34.7298181
-        ]
-      },
-      "properties": {
-        "church_name": "Ripley Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": "www.ripleypresbyterianchurch.com",
-        "google_maps_url": null,
-        "size_bucket": "S",
         "affiliate": null
       }
     },
@@ -21242,6 +22202,26 @@
       }
     },
     {
+      "id": "7570",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.5596982,
+          37.304241
+        ]
+      },
+      "properties": {
+        "church_name": "Davis Memorial Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "6946 Prince Edwards Hwy, Prospect, VA 23960",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": null,
+        "affiliate": null
+      }
+    },
+    {
       "id": "7571",
       "type": "Feature",
       "geometry": {
@@ -21458,6 +22438,66 @@
         "url": "www.fpc4me.org/",
         "google_maps_url": "https://maps.google.com/?cid=6902063440691219555",
         "size_bucket": "XS",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "7719",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.4849006,
+          31.7774744
+        ]
+      },
+      "properties": {
+        "church_name": "First Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "1340 Murchison Dr, El Paso, TX 79902-4821",
+        "url": null,
+        "google_maps_url": "https://maps.google.com/?cid=4886221413534599400",
+        "size_bucket": "M",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "7721",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.8885639,
+          30.8867958
+        ]
+      },
+      "properties": {
+        "church_name": "First Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "202 N Oklahoma, Ft Stockton, TX 79735",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": null,
+        "affiliate": null
+      }
+    },
+    {
+      "id": "7736",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.3331445,
+          31.8878539
+        ]
+      },
+      "properties": {
+        "church_name": "Westminster Presbyterian Church",
+        "lib_level": 1,
+        "full_address": "4901 Maple Ave, Odessa, TX 79762",
+        "url": null,
+        "google_maps_url": null,
+        "size_bucket": "S",
         "affiliate": null
       }
     },
@@ -23862,26 +24902,6 @@
       }
     },
     {
-      "id": "8411",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.5356463,
-          35.2923513
-        ]
-      },
-      "properties": {
-        "church_name": "Shelby Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": "www.shelbypres.org",
-        "google_maps_url": null,
-        "size_bucket": "M",
-        "affiliate": null
-      }
-    },
-    {
       "id": "8425",
       "type": "Feature",
       "geometry": {
@@ -23898,26 +24918,6 @@
         "url": null,
         "google_maps_url": null,
         "size_bucket": "XS",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "8427",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.87044809999999,
-          36.0711174
-        ]
-      },
-      "properties": {
-        "church_name": "Wee Kirk Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
         "affiliate": null
       }
     },
@@ -24582,26 +25582,6 @@
       }
     },
     {
-      "id": "8596",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -151.7040728,
-          68.1531755
-        ]
-      },
-      "properties": {
-        "church_name": "Chapel in the Mountains Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
       "id": "8597",
       "type": "Feature",
       "geometry": {
@@ -24682,46 +25662,6 @@
       }
     },
     {
-      "id": "8602",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -171.7238744,
-          63.77806809999999
-        ]
-      },
-      "properties": {
-        "church_name": "Gambell Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": "pbyukon.org/gambell_bld.html",
-        "google_maps_url": null,
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
-      "id": "8605",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -143.6249182,
-          70.12110799999999
-        ]
-      },
-      "properties": {
-        "church_name": "Kaktovik Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
       "id": "8606",
       "type": "Feature",
       "geometry": {
@@ -24735,26 +25675,6 @@
         "church_name": "Korean Presbyterian Church",
         "lib_level": 0,
         "full_address": "345 A St, Fairbanks, AK 99701-3516",
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": "XS",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "8607",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -150.9989543,
-          70.2185831
-        ]
-      },
-      "properties": {
-        "church_name": "Kuukpik Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
         "url": null,
         "google_maps_url": null,
         "size_bucket": "XS",
@@ -24776,46 +25696,6 @@
         "lib_level": 1,
         "full_address": "2371 Bradway Rd, North Pole, AK 99705-5503",
         "url": "www.nhmpc.com",
-        "google_maps_url": null,
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
-      "id": "8609",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -159.9617249,
-          70.63447219999999
-        ]
-      },
-      "properties": {
-        "church_name": "Olgonik Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
-        "affiliate": null
-      }
-    },
-    {
-      "id": "8610",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -170.4797711,
-          63.6946581
-        ]
-      },
-      "properties": {
-        "church_name": "Savoonga Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
         "google_maps_url": null,
         "size_bucket": null,
         "affiliate": null
@@ -24858,26 +25738,6 @@
         "url": "www.palmerlogchurch.org",
         "google_maps_url": "https://maps.google.com/?cid=4908801331025659633",
         "size_bucket": "S",
-        "affiliate": null
-      }
-    },
-    {
-      "id": "8614",
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -156.7886111,
-          71.29055559999999
-        ]
-      },
-      "properties": {
-        "church_name": "Utqiagvik Presbyterian Church",
-        "lib_level": 1,
-        "full_address": null,
-        "url": null,
-        "google_maps_url": null,
-        "size_bucket": null,
         "affiliate": null
       }
     }
