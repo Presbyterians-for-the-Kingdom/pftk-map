@@ -5782,6 +5782,26 @@
       }
     },
     {
+      "id": "1927",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.03001019999999,
+          34.6890877
+        ]
+      },
+      "properties": {
+        "church_name": "Richland Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "821 Poplar Springs Rd, Westminster, SC 29693",
+        "url": null,
+        "google_maps_url": "https://maps.google.com/?cid=2183468160124225242",
+        "size_bucket": "XS",
+        "affiliate": true
+      }
+    },
+    {
       "id": "1953",
       "type": "Feature",
       "geometry": {
@@ -5919,6 +5939,26 @@
         "google_maps_url": null,
         "size_bucket": "S",
         "affiliate": null
+      }
+    },
+    {
+      "id": "2096",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.3321296,
+          38.3997483
+        ]
+      },
+      "properties": {
+        "church_name": "Boeuff Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "407 S Pine, Gerald, MO 63037",
+        "url": "www.boeuffchurch.com",
+        "google_maps_url": "https://www.google.com/maps?cid=16811029835710360801",
+        "size_bucket": "XS",
+        "affiliate": true
       }
     },
     {
@@ -6457,6 +6497,26 @@
         "full_address": "210 N McKinney St, Ennis, TX 75119-3951",
         "url": "www.fpcennis.com",
         "google_maps_url": "https://maps.google.com/?cid=14275362505161691921",
+        "size_bucket": "S",
+        "affiliate": null
+      }
+    },
+    {
+      "id": "2195",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.8145523,
+          32.8539114
+        ]
+      },
+      "properties": {
+        "church_name": "Westminster Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "8200 Devonshire Dr, Dallas, TX 75229",
+        "url": "www.wpcd.org",
+        "google_maps_url": null,
         "size_bucket": "S",
         "affiliate": null
       }
@@ -12739,6 +12799,46 @@
         "google_maps_url": null,
         "size_bucket": "XS",
         "affiliate": null
+      }
+    },
+    {
+      "id": "4805",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.9824173,
+          34.0287835
+        ]
+      },
+      "properties": {
+        "church_name": "Trinity Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "1003 Albert Rains Blvd, Gadsden, AL 35901",
+        "url": null,
+        "google_maps_url": "https://www.google.com/maps?cid=9942742543788078441",
+        "size_bucket": "XS",
+        "affiliate": true
+      }
+    },
+    {
+      "id": "4809",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.5660972,
+          34.7056712
+        ]
+      },
+      "properties": {
+        "church_name": "Covenant Presbyterian Church",
+        "lib_level": 0,
+        "full_address": "301 Drake Ave SE, Huntsville, AL 35802",
+        "url": "www.covhsv.org",
+        "google_maps_url": "https://www.google.com/maps?cid=9477609900022442748",
+        "size_bucket": "M",
+        "affiliate": true
       }
     },
     {
