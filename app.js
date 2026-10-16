@@ -1,11 +1,24 @@
 'use strict';
 
-const map = L.map('map', { zoomControl: false }).setView([39.5, -98.35], 5);
+const map = L.map('map', {
+  zoomControl: false,
+  zoomSnap: window.matchMedia('(max-width: 700px)').matches ? 0 : 1,
+  zoomDelta: window.matchMedia('(max-width: 700px)').matches ? 0 : 1
+}).setView([39.5, -98.35], 5);
 L.control.zoom({ position: 'topright' }).addTo(map);
+
+const zoomDeltaQuery = window.matchMedia('(max-width: 700px)');
+function applyZoomDelta() {
+  const mobile = zoomDeltaQuery.matches;
+  map.options.zoomDelta = mobile ? 0 : 1;
+  map.options.zoomSnap = mobile ? 0 : 1;
+}
+applyZoomDelta();
+zoomDeltaQuery.addEventListener('change', applyZoomDelta);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
-  maxNativeZoom: 18,          // ← this is the key line for less detail
+  maxNativeZoom: 20,          // ← this is the key line for less detail
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   updateWhenIdle: false,
   updateWhenZooming: true,
@@ -130,6 +143,19 @@ function sizeLabel(sz) {
   return sizeMap[sz] || sz;
 }
 
+function popupOptions(c) {
+  const bits = [c.church_name, c.full_address, c.url, c.email]
+    .filter(Boolean)
+    .map(function (value) { return String(value); });
+  const longest = bits.reduce(function (n, s) { return Math.max(n, s.length); }, 18);
+  const fitted = Math.round(longest * 8.4) + 120;
+  if (fitted > 560) {
+    return { maxWidth: 320, minWidth: 280, className: 'popup-wrap' };
+  }
+  const width = Math.max(260, fitted);
+  return { maxWidth: width, minWidth: Math.min(width, 280), className: 'popup-fit' };
+}
+
 function buildPopup(c, lat, lon) {
 //  const addr1 = c.address_line_1 ? esc(c.address_line_1) : '';
 //  const addr2 = [c.address_city, c.address_state].filter(Boolean).join(', ') + (c.address_zip ? ' ' + c.address_zip : '');
@@ -201,22 +227,49 @@ function addLegend() {
   legend.onAdd = function () {
     const div = L.DomUtil.create('div', 'map-legend');
     div.innerHTML = [
-      '<div class="legend-title">PftK Rating</div>',
-      '<div class="legend-row"><img class="seal-presby" src="denominational-seals/presby.png" alt="" width="34" height="34"><span>PC(USA) church</span></div>',
-      '<div class="legend-row"><span class="legend-num">1</span><span>More moderate; theological conservatives and traditionalists welcome</span></div>',
-      '<div class="legend-row"><span class="legend-num">2</span><span>Good fit for theological conservatives and traditionalists</span></div>',
+      '<button type="button" class="legend-banner" id="legend-expand">Map legend</button>',
+      '<div class="legend-body">',
+      '<button type="button" class="legend-collapse" id="legend-collapse">Map legend</button>',
+      '<div class="legend-title">The PftK Map</div>',
+      '<div class="legend-row"><img class="seal-presby" src="denominational-seals/presby.png" alt="" width="34" height="34"><span>PC(USA) Congregation</span></div>',
+      '<p class="legend-note">PftK suggests exploring congregations listed on the map!</p>',
+      '<p class="legend-note">Congregations are rated for fit. The scale is below.</p>',
       '<div class="legend-row"><span class="legend-num">3</span><span>Great fit for theological conservatives and traditionalists</span></div>',
-      '<p class="legend-note">PftK recommends attending the congregations listed on the map.</p>',
-      '<div class="legend-row"><img class="seal-affiliate" src="denominational-seals/pftk.png" alt="" width="38" height="38"><span>Affiliated church</span></div>',
-      '<p class="legend-note">Official allied congregation of Presbyterians for the Kingdom and openly supports mainline revival.</p>',
+      '<div class="legend-row"><span class="legend-num">2</span><span>Good fit for theological conservatives and traditionalists</span></div>',
+      '<div class="legend-row"><span class="legend-num">1</span><span>More moderate; theological conservatives and traditionalists welcome</span></div>',
+      '<div class="legend-row"><img class="seal-affiliate" src="denominational-seals/pftk.png" alt="" width="38" height="38"><span>Affiliated Congregation</span></div>',
+      '<p class="legend-note">Official allied congregation of Presbyterians for the Kingdom that openly supports mainline revival.</p>',
       '<label class="legend-toggle"><input type="checkbox" id="affiliates-only"><span>Affiliates only</span></label>',
-      '<a class="legend-link" href="https://www.pftk.org/map-disclaimer" target="_blank" rel="noopener noreferrer">Map disclaimer</a>'
+      '<a class="legend-link" href="https://www.pftk.org/map-disclaimer" target="_blank" rel="noopener noreferrer">Map disclaimer</a>',
+      '</div>'
     ].join('');
     L.DomEvent.disableClickPropagation(div);
     L.DomEvent.disableScrollPropagation(div);
     return div;
   };
   legend.addTo(map);
+
+  const div = legend.getContainer();
+  const home = div.parentNode;
+  const mobileQuery = window.matchMedia('(max-width: 700px)');
+  function setExpanded(expanded) {
+    const mobile = mobileQuery.matches;
+    div.classList.toggle('is-mobile-open', mobile && expanded);
+    div.classList.toggle('is-collapsed', mobile && !expanded);
+    div.classList.remove('is-expanded');
+    if (mobile && expanded) document.body.appendChild(div);
+    else home.appendChild(div);
+  }
+  setExpanded(false);
+  mobileQuery.addEventListener('change', function () {
+    setExpanded(false);
+  });
+  div.querySelector('#legend-expand').addEventListener('click', function () {
+    setExpanded(true);
+  });
+  div.querySelector('#legend-collapse').addEventListener('click', function () {
+    setExpanded(false);
+  });
 
   const toggle = document.getElementById('affiliates-only');
   toggle.addEventListener('change', function () {
@@ -274,12 +327,12 @@ fetch('data/PCUSA_Congregations.geojson')
           pane: 'affiliates',
           zIndexOffset: 1000
         });
-        marker.bindPopup(() => buildPopup(c, lat, lon), { maxWidth: 320 });
+        marker.bindPopup(() => buildPopup(c, lat, lon), popupOptions(c));
         affiliateMarkers.push(marker);
         continue;
       }
       const marker = L.marker([lat, lon], { icon: churchIcon });
-      marker.bindPopup(() => buildPopup(c, lat, lon), { maxWidth: 320 });
+      marker.bindPopup(() => buildPopup(c, lat, lon), popupOptions(c));
       markers.push(marker);
     }
     clusters.addLayers(markers);
