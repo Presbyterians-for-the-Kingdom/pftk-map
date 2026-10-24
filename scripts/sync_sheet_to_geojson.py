@@ -80,7 +80,7 @@ FORBIDDEN_COLUMNS = [
 ]
 
 # Only congregations with lib_level in this set are published at all.
-PUBLISHED_LIB_LEVELS = {0, 1}
+PUBLISHED_LIB_LEVELS = {3, 2}
 
 SIZE_BUCKET_BINS = [0, 40, 100, 300, 800, 100000]  # right-open: [a, b)
 SIZE_BUCKET_LABELS = ["XS", "S", "M", "L", "XL"]
