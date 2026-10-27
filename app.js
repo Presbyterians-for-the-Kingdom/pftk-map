@@ -2,6 +2,7 @@
 
 const map = L.map('map', {
   zoomControl: false,
+  worldCopyJump: true,
   zoomSnap: window.matchMedia('(max-width: 700px)').matches ? 0 : 1,
   zoomDelta: window.matchMedia('(max-width: 700px)').matches ? 0 : 1
 }).setView([39.5, -98.35], 5);
