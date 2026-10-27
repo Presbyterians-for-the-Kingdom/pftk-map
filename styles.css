@@ -136,6 +136,27 @@ html, body {
   line-height: 1.5;
 }
 
+
+@media (max-width: 700px) {
+  .leaflet-popup-content-wrapper,
+  .leaflet-popup-content {
+    max-width: min(280px, 82vw);
+  }
+
+  .church-popup h3,
+  .church-popup .addr,
+  .church-popup a,
+  .church-popup td {
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .church-popup table td.label {
+    white-space: nowrap;
+  }
+}
+
 .leaflet-control.map-legend {
   width: 320px;
   max-width: 320px;
@@ -188,9 +209,29 @@ html, body {
 }
 
 .legend-collapse {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
   padding: 0;
   margin: 0 0 10px;
+}
+
+.legend-back-arrow {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+@media (max-width: 700px) {
+  .legend-collapse {
+    position: sticky;
+    top: -18px;
+    z-index: 1;
+    margin: -18px -16px 10px;
+    padding: 14px 16px 12px;
+    background: #F2F3F7;
+    border-bottom: 1px solid rgba(11, 9, 36, 0.18);
+  }
 }
 
 .map-legend .legend-row {
