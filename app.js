@@ -229,7 +229,7 @@ function addLegend() {
     div.innerHTML = [
       '<button type="button" class="legend-banner" id="legend-expand">Map legend</button>',
       '<div class="legend-body">',
-      '<button type="button" class="legend-collapse" id="legend-collapse">Map legend</button>',
+      '<button type="button" class="legend-collapse" id="legend-collapse"><span class="legend-back-arrow" aria-hidden="true">&larr;</span><span>Back to map</span></button>',
       '<div class="legend-title">The PftK Map</div>',
       '<div class="legend-row"><img class="seal-presby" src="denominational-seals/presby.png" alt="" width="34" height="34"><span>PC(USA) Congregation</span></div>',
       '<p class="legend-note">PftK suggests exploring congregations listed on the map!</p>',
