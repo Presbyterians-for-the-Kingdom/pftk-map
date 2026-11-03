@@ -3,37 +3,122 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- A bunch of security stuff to prevent XSS. It's best to configure these in the web server, but I put them here for now as a reminder.-->
-  <!-- Also, be sure to include "frame-ancestors 'none';" It isn't in the meta tag since it can only be set via the web server config. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- GitHub Pages can't send headers, so the CSP lives here. frame-ancestors
+       is header-only, which also keeps the page embeddable on pftk.org. -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'none';
     script-src 'self';
-    style-src 'self';
-    img-src 'self' data: https://*.tile.openstreetmap.org;
+    style-src 'self' https://fonts.googleapis.com;
+    font-src https://fonts.gstatic.com;
+    img-src 'self' data: https://tile.openstreetmap.org;
     connect-src 'self';
     base-uri 'none';
     form-action 'none';
     object-src 'none';
   ">
-  <meta name="referrer" content="no-referrer">
-  <title>PftK Church Map</title>
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="Find PC(USA) congregations that are a good fit for theological conservatives and traditionalists, rated by Presbyterians for the Kingdom.">
+  <meta name="theme-color" content="#0B0924">
+  <title>The PftK Map</title>
 
+  <!-- Link previews (Facebook, LinkedIn, iMessage, Slack, X). Crawlers don't
+       run JS and need absolute URLs, so update these if the site moves.
+       Regenerate the image with scripts/make_og_image.py. -->
+  <link rel="canonical" href="https://presbyterians-for-the-kingdom.github.io/pftk-map/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Presbyterians for the Kingdom">
+  <meta property="og:title" content="The PftK Map">
+  <meta property="og:description" content="Find PC(USA) congregations rated for theological fit. Search by city, state or ZIP.">
+  <meta property="og:url" content="https://presbyterians-for-the-kingdom.github.io/pftk-map/">
+  <meta property="og:image" content="https://presbyterians-for-the-kingdom.github.io/pftk-map/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Map of the United States dotted with PC(USA) congregations rated by PftK">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="denominational-seals/pftk.png">
+  <link rel="preload" href="data/PCUSA_Congregations.geojson" as="fetch" crossorigin>
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Merriweather:wght@700&display=swap">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="vendor/leaflet.markercluster/MarkerCluster.css">
-  <link rel="stylesheet" href="vendor/leaflet.markercluster/MarkerCluster.Default.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+  <a class="skip-link" href="#results">Skip to church list</a>
 
-  <div id="map"></div>
-  <div id="status">Loading churches&hellip;</div>
+  <aside class="panel" id="panel" aria-label="Church finder" data-state="peek">
+    <button type="button" class="sheet-handle" id="sheet-handle" aria-controls="panel" aria-expanded="false">
+      <span class="sheet-grip" aria-hidden="true"></span>
+      <span class="sheet-label" id="sheet-label">Loading churches&hellip;</span>
+    </button>
 
-  <script src="vendor/leaflet/leaflet.js"></script>
-  <script src="vendor/leaflet.markercluster/leaflet.markercluster.js"></script>
-  <script src="app.js"></script>
+    <header class="panel-header">
+      <img src="denominational-seals/pftk.png" alt="" width="40" height="40">
+      <div>
+        <h1>The PftK Map</h1>
+        <p class="tagline">Congregations rated for theological fit</p>
+      </div>
+    </header>
 
+    <div class="search">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.96 12.06l4.24 4.24-1.4 1.4-4.24-4.24A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/></svg>
+      <input type="search" id="search" placeholder="Church, city, state or ZIP" autocomplete="off" spellcheck="false" aria-label="Search churches" aria-controls="results">
+      <button type="button" class="icon-btn" id="near-me" title="Churches near me" aria-label="Show churches near me">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-1-7h2v3.06A8 8 0 0 1 19.94 11H23v2h-3.06A8 8 0 0 1 13 19.94V23h-2v-3.06A8 8 0 0 1 4.06 13H1v-2h3.06A8 8 0 0 1 11 4.06V1Zm1 5a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg>
+      </button>
+    </div>
+
+    <fieldset class="filters" aria-label="Filters">
+      <div class="chip-row" role="group" aria-label="Rating">
+        <label class="chip chip-r3"><input type="checkbox" name="rating" value="3" checked><span><b>3</b> Great fit</span></label>
+        <label class="chip chip-r2"><input type="checkbox" name="rating" value="2" checked><span><b>2</b> Good fit</span></label>
+        <label class="chip chip-r1" hidden><input type="checkbox" name="rating" value="1" checked><span><b>1</b> Moderate</span></label>
+        <label class="chip chip-aff"><input type="checkbox" id="affiliates-only"><span>Affiliates only</span></label>
+      </div>
+      <div class="chip-row" role="group" aria-label="Congregation size">
+        <span class="chip-row-label">Size</span>
+        <label class="chip chip-sm"><input type="checkbox" name="size" value="XS" checked><span>XS</span></label>
+        <label class="chip chip-sm"><input type="checkbox" name="size" value="S" checked><span>S</span></label>
+        <label class="chip chip-sm"><input type="checkbox" name="size" value="M" checked><span>M</span></label>
+        <label class="chip chip-sm"><input type="checkbox" name="size" value="L" checked><span>L</span></label>
+        <label class="chip chip-sm"><input type="checkbox" name="size" value="XL" checked><span>XL</span></label>
+        <label class="chip chip-sm"><input type="checkbox" name="size" value="" checked><span>Unknown</span></label>
+      </div>
+      <label class="switch"><input type="checkbox" id="show-seminaries"><span>Show mainline seminaries</span></label>
+    </fieldset>
+
+    <div class="results-head">
+      <p id="count" aria-live="polite">Loading churches&hellip;</p>
+      <button type="button" class="link-btn" id="reset" hidden>Reset</button>
+    </div>
+    <ol class="results" id="results" tabindex="-1" aria-label="Churches"></ol>
+
+    <details class="about">
+      <summary>About the ratings</summary>
+      <p>PftK suggests exploring the congregations listed on the map. Each is rated for fit:</p>
+      <dl>
+        <dt><span class="badge r3">3</span></dt><dd>Great fit for theological conservatives and traditionalists</dd>
+        <dt><span class="badge r2">2</span></dt><dd>Good fit for theological conservatives and traditionalists</dd>
+        <dt><span class="badge r1">1</span></dt><dd>More moderate; theological conservatives and traditionalists welcome</dd>
+        <dt><img src="denominational-seals/pftk.png" alt="" width="26" height="26"></dt><dd><strong>Affiliated congregation</strong>: an official ally of Presbyterians for the Kingdom that openly supports mainline revival.</dd>
+      </dl>
+      <p>Sizes: XS under 40, S 40&ndash;99, M 100&ndash;299, L 300&ndash;799, XL 800+.</p>
+      <a href="https://www.pftk.org/map-disclaimer" target="_blank" rel="noopener">Map disclaimer and size explanation</a>
+    </details>
+  </aside>
+
+  <main id="map" aria-label="Map of churches"></main>
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="vendor/leaflet/leaflet.js" defer></script>
+  <script src="vendor/leaflet.markercluster/leaflet.markercluster.js" defer></script>
+  <script src="app.js" defer></script>
 </body>
 
 </html>
