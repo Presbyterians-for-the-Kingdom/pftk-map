@@ -189,12 +189,6 @@ input {
   margin-bottom: 8px;
 }
 
-.chip-row-label {
-  font-size: 0.78rem;
-  color: var(--ink-2);
-  margin-right: 2px;
-}
-
 .chip input,
 .switch input {
   position: absolute;
@@ -216,12 +210,6 @@ input {
   cursor: pointer;
   user-select: none;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
-}
-
-.chip-sm span {
-  height: 26px;
-  padding: 0 9px;
-  font-size: 0.76rem;
 }
 
 .chip span b {
@@ -698,7 +686,6 @@ input {
     display: none;
   }
 
-  .panel[data-state="peek"] .filters .chip-row:nth-child(2),
   .panel[data-state="peek"] .filters .switch {
     display: none;
   }

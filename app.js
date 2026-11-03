@@ -6,7 +6,6 @@
   const params = new URLSearchParams(location.search);
 
   const LIST_LIMIT = 150;
-  const SIZE_LABELS = { XS: 'Extra small', S: 'Small', M: 'Medium', L: 'Large', XL: 'Extra large' };
   const RATING_LABELS = { 3: 'Great fit', 2: 'Good fit', 1: 'Moderate' };
   const STATES = {
     AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California', CO: 'Colorado',
@@ -173,7 +172,6 @@
     const tags = [];
     if (c.affiliate) tags.push('<span class="tag aff">PftK affiliate</span>');
     if (RATING_LABELS[c.rating]) tags.push(`<span class="tag r${c.rating}">${c.rating} · ${RATING_LABELS[c.rating]}</span>`);
-    if (c.size) tags.push(`<span class="tag">${esc(SIZE_LABELS[c.size] || c.size)}</span>`);
 
     const site = safeHttpUrl(c.url);
     return `<div class="pop">
@@ -242,7 +240,6 @@
         address,
         url: p.url,
         maps: p.google_maps_url,
-        size: SIZE_LABELS[p.size_bucket] ? p.size_bucket : '',
         affiliate: AFFILIATE_KEYS.some((k) => isTruthy(p[k])),
         state: state.toLowerCase(),
         haystack: normalize(p.church_name + ' ' + address + ' ' + (STATES[state] || '')),
@@ -269,7 +266,6 @@
 
   const filters = {
     ratings: new Set(['3', '2', '1']),
-    sizes: new Set(['XS', 'S', 'M', 'L', 'XL', '']),
     affiliatesOnly: false,
     tokens: []
   };
@@ -287,7 +283,6 @@
   function passes(c) {
     if (filters.affiliatesOnly && !c.affiliate) return false;
     if (RATING_LABELS[c.rating] ? !filters.ratings.has(String(c.rating)) : !allRatingsChecked()) return false;
-    if (!filters.sizes.has(c.size)) return false;
     for (const t of filters.tokens) if (!tokenMatches(c, t)) return false;
     return true;
   }
@@ -306,7 +301,7 @@
     for (const m of pinned) affiliateLayer.addLayer(m);
 
     const isDefault = !filters.tokens.length && !filters.affiliatesOnly &&
-      filters.sizes.size === 6 && allRatingsChecked();
+      allRatingsChecked();
     $('reset').hidden = isDefault;
 
     if (fit && visible.length && visible.length < churches.length) {
@@ -479,11 +474,10 @@
   });
   $('search').addEventListener('focus', () => { if (mobileQuery.matches) setSheet('full'); });
 
-  for (const input of document.querySelectorAll('input[name="rating"], input[name="size"]')) {
+  for (const input of document.querySelectorAll('input[name="rating"]')) {
     input.addEventListener('change', () => {
-      const set = input.name === 'rating' ? filters.ratings : filters.sizes;
-      if (input.checked) set.add(input.value);
-      else set.delete(input.value);
+      if (input.checked) filters.ratings.add(input.value);
+      else filters.ratings.delete(input.value);
       applyFilters(false);
     });
   }
@@ -497,9 +491,9 @@
     filters.tokens = [];
     filters.affiliatesOnly = false;
     $('affiliates-only').checked = false;
-    for (const input of document.querySelectorAll('input[name="rating"], input[name="size"]')) {
+    for (const input of document.querySelectorAll('input[name="rating"]')) {
       input.checked = true;
-      (input.name === 'rating' ? filters.ratings : filters.sizes).add(input.value);
+      filters.ratings.add(input.value);
     }
     applyFilters(false);
   });
