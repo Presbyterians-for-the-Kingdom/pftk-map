@@ -19,16 +19,6 @@
     SD: 'South Dakota', TN: 'Tennessee', TX: 'Texas', UT: 'Utah', VT: 'Vermont', VA: 'Virginia',
     WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming'
   };
-  const SEMINARY_ICONS = {
-    'ABCUSA': ['baptist.png', 'American Baptist'],
-    'ELCA': ['lutheran.png', 'ELCA (Lutheran)'],
-    'PC(USA)': ['presby.png', 'PC(USA)'],
-    'RCA': ['dutchref.png', 'Reformed Church in America'],
-    'TEC': ['anglican.png', 'Episcopal Church'],
-    'UCC': ['congregational.png', 'United Church of Christ'],
-    'UMC': ['methodist.png', 'United Methodist'],
-    'Interdenominational': ['handshake_interdenominational.png', 'Interdenominational']
-  };
 
   // ---------- Safe output helpers ----------
 
@@ -131,8 +121,6 @@
 
   map.createPane('affiliates');
   map.getPane('affiliates').style.zIndex = 640;
-  map.createPane('seminaries');
-  map.getPane('seminaries').style.zIndex = 630;
 
   const icons = {};
   function iconFor(c) {
@@ -525,55 +513,6 @@
     }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
   });
 
-  // ---------- Seminaries (loaded on first use) ----------
-
-  let seminaryLayer = null;
-  async function setSeminaries(on) {
-    if (on && !seminaryLayer) {
-      seminaryLayer = L.layerGroup();
-      try {
-        const res = await fetch('data/seminaries.geojson');
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const geojson = await res.json();
-        const semIcons = {};
-        for (const feature of geojson.features || []) {
-          const p = (feature && feature.properties) || {};
-          const coords = (feature && feature.geometry && feature.geometry.coordinates) || [];
-          const denom = p.denomination;
-          const meta = SEMINARY_ICONS[denom];
-          const lon = coords[0], lat = coords[1];
-          if (!meta || typeof p.name !== 'string' || !Number.isFinite(lat) || !Number.isFinite(lon)) continue;
-          semIcons[denom] = semIcons[denom] || L.icon({
-            iconUrl: 'denominational-seals/' + meta[0], iconSize: [28, 28], iconAnchor: [14, 14],
-            popupAnchor: [0, -12], className: 'pin pin-sem'
-          });
-          const s = { name: p.name, city: p.city, address: p.address, lat, lon };
-          L.marker([lat, lon], { icon: semIcons[denom], pane: 'seminaries', title: s.name })
-            .bindPopup(() => `<div class="pop">
-              <h2>${esc(s.name)}</h2>
-              <p class="pop-addr">${esc([s.address, s.city].filter(Boolean).join(', '))}</p>
-              <div class="pop-tags"><span class="tag">Seminary</span><span class="tag">${esc(meta[1])}</span></div>
-              <div class="pop-actions"><a class="primary" target="_blank" rel="noopener" href="${esc(
-                'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.name + ', ' + (s.city || '')))}">Directions</a></div>
-            </div>`, popupOptions)
-            .addTo(seminaryLayer);
-        }
-      } catch (err) {
-        console.error(err);
-        seminaryLayer = null;
-        $('show-seminaries').checked = false;
-        toast('Couldn’t load seminaries');
-        return;
-      }
-    }
-    if (seminaryLayer) {
-      if (on) seminaryLayer.addTo(map);
-      else seminaryLayer.remove();
-    }
-    setUrlParam('seminaries', on ? '1' : null);
-  }
-  $('show-seminaries').addEventListener('change', (e) => setSeminaries(e.target.checked));
-
   // ---------- Mobile bottom sheet ----------
 
   const panel = $('panel');
@@ -631,9 +570,4 @@
       $('count').textContent = 'Couldn’t load church data. Please refresh to try again.';
       $('sheet-label').textContent = 'Couldn’t load church data';
     });
-
-  if (params.get('seminaries') === '1') {
-    $('show-seminaries').checked = true;
-    setSeminaries(true);
-  }
 })();

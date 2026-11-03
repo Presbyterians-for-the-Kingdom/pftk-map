@@ -189,8 +189,7 @@ input {
   margin-bottom: 8px;
 }
 
-.chip input,
-.switch input {
+.chip input {
   position: absolute;
   opacity: 0;
   pointer-events: none;
@@ -237,36 +236,9 @@ input {
   background: rgba(255, 255, 255, 0.22);
 }
 
-.chip input:focus-visible + span,
-.switch input:focus-visible + span::before {
+.chip input:focus-visible + span {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
-}
-
-.switch span {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.85rem;
-  color: var(--ink-2);
-  cursor: pointer;
-}
-
-.switch span::before {
-  content: "";
-  width: 32px;
-  height: 18px;
-  border-radius: 999px;
-  background: #cfd1dc;
-  box-shadow: inset 0 0 0 2px #cfd1dc;
-  transition: background 0.15s;
-  background-image: radial-gradient(circle at 9px 50%, #fff 6px, transparent 6.5px);
-}
-
-.switch input:checked + span::before {
-  background-color: var(--ink);
-  box-shadow: inset 0 0 0 2px var(--ink);
-  background-image: radial-gradient(circle at 23px 50%, #fff 6px, transparent 6.5px);
 }
 
 .results-head {
@@ -457,10 +429,6 @@ input {
 .pin-aff {
   --ring: var(--gold);
   box-shadow: 0 0 0 3px var(--gold), 0 3px 8px rgba(0, 0, 0, 0.4);
-}
-
-.pin-sem {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .pin.is-active {
@@ -683,10 +651,6 @@ input {
   }
 
   .results-head {
-    display: none;
-  }
-
-  .panel[data-state="peek"] .filters .switch {
     display: none;
   }
 
