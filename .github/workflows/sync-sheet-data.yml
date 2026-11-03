@@ -35,6 +35,24 @@ jobs:
           WORKSHEET_NAME: "Master"
         run: python scripts/sync_sheet_to_geojson.py
 
+      - name: Check pins against addresses
+        # Report only: lists churches whose pin is far from their address
+        # on the run's summary page. Never blocks the sync.
+        continue-on-error: true
+        run: |
+          python scripts/check_locations.py > location-report.csv
+          flagged=$(($(wc -l < location-report.csv) - 1))
+          {
+            echo "### Pin check: $flagged flagged"
+            if [ "$flagged" -gt 0 ]; then
+              echo
+              echo '```'
+              cat location-report.csv
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          rm location-report.csv
+
       - name: Commit updated data if it changed
         run: |
           git config user.name "pftk-data-bot"
