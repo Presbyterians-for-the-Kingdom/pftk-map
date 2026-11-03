@@ -294,16 +294,18 @@ def main():
         features.append({
             "id": str(i),
             "type": "Feature",
-            "geometry": {"type": "Point", "coordinates": [lon, lat]},
+            # 6 decimals is about 10 cm, far finer than a pin needs.
+            "geometry": {"type": "Point", "coordinates": [round(lon, 6), round(lat, 6)]},
             "properties": properties,
         })
 
-    geojson = {"type": "FeatureCollection", "features": features}
-
+    # Compact, one feature per line: about half the size of indented JSON,
+    # and a change to one church is still a one-line diff.
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w") as f:
-        json.dump(geojson, f, indent=2)
-        f.write("\n")
+        f.write('{"type":"FeatureCollection","features":[\n')
+        f.write(",\n".join(json.dumps(feat, separators=(",", ":")) for feat in features))
+        f.write("\n]}\n")
 
     print(
         f"Wrote {len(features)} features to {OUTPUT_PATH} "
