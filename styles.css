@@ -449,6 +449,21 @@ input {
 .cluster-m { font-size: 0.85rem; }
 .cluster-l { font-size: 0.9rem; }
 
+/* "Near me" and searched ZIP or town locations. */
+.loc-dot {
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.loc-you {
+  background: #3d7bff;
+}
+
+.loc-place {
+  background: var(--ink);
+}
+
 /* ---------- Popup ---------- */
 
 .leaflet-popup-content-wrapper {

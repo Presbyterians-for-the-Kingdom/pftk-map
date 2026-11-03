@@ -188,6 +188,10 @@
   let activeId = null;
   let userLoc = null;
   let userMarker = null;
+  // A searched ZIP or town: { lat, lon, label }. The list then runs
+  // nearest-first from it instead of filtering by text.
+  let place = null;
+  let placeMarker = null;
 
   const AFFILIATE_KEYS = ['affiliate', 'affliate', 'is_affiliate', 'pftk_affiliate'];
   function isTruthy(v) {
@@ -215,9 +219,8 @@
       if (!Number.isFinite(lat) || lat < -90 || lat > 90 || !Number.isFinite(lon) || lon < -180 || lon > 180) continue;
       const address = typeof p.full_address === 'string' ? p.full_address.trim() : '';
       const rating = parseInt(p.lib_level, 10);
-      // Puerto Rico ZIPs arrive without their leading zeros ("PR 901").
-      const m = address.match(/,\s*([A-Z]{2})\s+(\d{3,5})/);
-      const state = m ? m[1] : '';
+      const codes = [...address.matchAll(/,\s*([A-Z]{2})\b/g)].map((m) => m[1]).filter((code) => STATES[code]);
+      const state = codes.length ? codes[codes.length - 1] : '';
       let id = stableId(p.church_name, address);
       while (byId.has(id)) id += 'x';
       const c = {
@@ -288,7 +291,7 @@
     affiliateLayer.clearLayers();
     for (const m of pinned) affiliateLayer.addLayer(m);
 
-    const isDefault = !filters.tokens.length && !filters.affiliatesOnly &&
+    const isDefault = !filters.tokens.length && !place && !filters.affiliatesOnly &&
       allRatingsChecked();
     $('reset').hidden = isDefault;
 
@@ -308,7 +311,8 @@
       const bounds = map.getBounds();
       items = visible.filter((c) => bounds.contains([c.lat, c.lon]));
     }
-    const origin = userLoc || (searching ? null : { lat: map.getCenter().lat, lon: map.getCenter().lng });
+    const near = place || userLoc;
+    const origin = near || (searching ? null : { lat: map.getCenter().lat, lon: map.getCenter().lng });
     if (origin) {
       for (const c of items) c.dist = milesBetween(origin, c);
       items = items.slice().sort((a, b) => a.dist - b.dist);
@@ -318,7 +322,7 @@
     let label;
     if (searching) label = n === 1 ? '1 match' : n.toLocaleString() + ' matches';
     else label = (n === 1 ? '1 church' : n.toLocaleString() + ' churches') + ' in view';
-    if (userLoc && n) label += ', nearest first';
+    if (near && n) label += place ? `, nearest to ${place.label} first` : ', nearest first';
     $('count').textContent = label;
     $('sheet-label').textContent = label;
 
@@ -334,7 +338,7 @@
       const badge = c.affiliate
         ? '<img src="denominational-seals/pftk.png" alt="PftK affiliate" width="26" height="26">'
         : `<span class="badge r${esc(c.rating)}" title="${esc(RATING_LABELS[c.rating] || '')}">${esc(c.rating || '?')}</span>`;
-      const dist = userLoc ? `<span class="result-dist">${c.dist < 10 ? c.dist.toFixed(1) : Math.round(c.dist)} mi</span>` : '<span></span>';
+      const dist = near ? `<span class="result-dist">${c.dist < 10 ? c.dist.toFixed(1) : Math.round(c.dist)} mi</span>` : '<span></span>';
       html.push(`<li><button type="button" class="result${c.id === activeId ? ' is-active' : ''}" data-id="${esc(c.id)}">
         ${badge}
         <span><span class="result-name">${esc(c.name)}</span><span class="result-addr">${esc(c.address)}</span></span>
@@ -442,15 +446,132 @@
     if (el) el.classList.remove('is-active');
   });
 
+  // ---------- ZIP and town search ----------
+  //
+  // data/places/ holds Census ZIP and town locations (see
+  // scripts/build_places.py), split into small files so a search only
+  // downloads the one it needs.
+
+  const placeFiles = new Map();
+  function loadPlaces(file) {
+    if (!placeFiles.has(file)) {
+      placeFiles.set(file, fetch('data/places/' + file)
+        .then((res) => {
+          if (!res.ok) throw new Error(file + ': HTTP ' + res.status);
+          return res.json();
+        })
+        .catch((err) => {
+          console.error(err);
+          placeFiles.delete(file); // let a later search retry
+          return null;
+        }));
+    }
+    return placeFiles.get(file);
+  }
+
+  // Same rules as key() in build_places.py.
+  function placeKey(text) {
+    return normalize(text).trim().replace(/\bsaint\b/g, 'st').replace(/\bmount\b/g, 'mt');
+  }
+
+  const STATE_KEYS = new Map(Object.entries(STATES).map(([code, name]) => [placeKey(name), code]));
+
+  async function findZip(zip) {
+    const zips = await loadPlaces('zip-' + zip[0] + '.json');
+    const hit = zips && zips[zip];
+    return hit ? { lat: hit[0], lon: hit[1], label: zip } : null;
+  }
+
+  // "dayton oh", "dayton, ohio", "st louis" -> the town, largest first when
+  // no state is given. Returns null if the words aren't a known town.
+  async function findTown(query) {
+    let words = placeKey(query).split(' ').filter(Boolean);
+    let state = '';
+    const last = words[words.length - 1];
+    if (words.length > 1 && last.length === 2 && STATES[last.toUpperCase()]) {
+      state = last.toUpperCase();
+      words = words.slice(0, -1);
+    } else {
+      for (let n = Math.min(3, words.length - 1); n >= 1 && !state; n--) {
+        const code = STATE_KEYS.get(words.slice(-n).join(' '));
+        if (code) {
+          state = code;
+          words = words.slice(0, -n);
+        }
+      }
+    }
+    const name = words.join(' ');
+    if (!name || !/[a-z]/.test(name[0])) return null;
+    const towns = await loadPlaces('town-' + name[0] + '.json');
+    if (!towns) return null;
+    const hits = towns.filter((t) => placeKey(t[0]) === name && (!state || t[1] === state));
+    if (!hits.length) return null;
+    // Without a state, "Springfield" could be any of a dozen: pick the one
+    // with the most listed churches within 30 miles.
+    const score = (t) => churches.filter((c) => milesBetween({ lat: t[2], lon: t[3] }, c) < 30).length;
+    const best = hits.length === 1 ? hits[0] : hits.slice().sort((a, b) => score(b) - score(a))[0];
+    return { lat: best[2], lon: best[3], label: best[0] + ', ' + best[1], others: hits.length - 1, state };
+  }
+
+  // A plain marker rather than L.circleMarker, which balloons while the
+  // map animates a big zoom.
+  function locationDot(className) {
+    return L.divIcon({ className: 'loc-dot ' + className, iconSize: [18, 18], iconAnchor: [9, 9] });
+  }
+
+  function setPlace(next) {
+    place = next;
+    if (placeMarker) {
+      placeMarker.remove();
+      placeMarker = null;
+    }
+    if (!place) return;
+    placeMarker = L.marker([place.lat, place.lon], { icon: locationDot('loc-place'), keyboard: false })
+      .bindTooltip(place.label).addTo(map);
+  }
+
+  function flyNear(point) {
+    const nearest = visible.slice().sort((a, b) => milesBetween(point, a) - milesBetween(point, b)).slice(0, 6);
+    const bounds = L.latLngBounds([[point.lat, point.lon]]);
+    for (const c of nearest) bounds.extend([c.lat, c.lon]);
+    map.flyToBounds(bounds, Object.assign({ maxZoom: 13, duration: 0.8 }, mapPadding()));
+  }
+
+  // A 5-digit ZIP always searches by location. Other text filters churches
+  // by name and address as before, and only falls back to a town when
+  // nothing matches, or when a state is given ("dayton oh").
+  let searchRun = 0;
+  async function runSearch(value) {
+    const run = ++searchRun;
+    const text = value.trim();
+    const tokens = normalize(text).trim().split(' ').filter(Boolean);
+    let found = null;
+    const zip = text.match(/^(\d{5})(?:-\d{4})?$/);
+    if (zip) {
+      found = await findZip(zip[1]);
+      if (run !== searchRun) return;
+      if (!found) toast('ZIP code not found');
+    } else if (tokens.length) {
+      const textHits = churches.filter((c) => tokens.every((t) => tokenMatches(c, t))).length;
+      const town = await findTown(text);
+      if (run !== searchRun) return;
+      if (town && (!textHits || town.state)) {
+        found = town;
+        if (town.others && !town.state) toast(`Showing ${town.label}. Add a state for a different one.`);
+      }
+    }
+    setPlace(found);
+    filters.tokens = found ? [] : tokens;
+    applyFilters(!found && tokens.length > 0);
+    if (found) flyNear(found);
+  }
+
   // ---------- Controls ----------
 
   let searchTimer;
   $('search').addEventListener('input', (e) => {
     clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => {
-      filters.tokens = normalize(e.target.value).trim().split(' ').filter(Boolean);
-      applyFilters(filters.tokens.length > 0);
-    }, 150);
+    searchTimer = setTimeout(() => runSearch(e.target.value), 250);
   });
   $('search').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
@@ -476,6 +597,8 @@
 
   $('reset').addEventListener('click', () => {
     $('search').value = '';
+    searchRun++;
+    setPlace(null);
     filters.tokens = [];
     filters.affiliatesOnly = false;
     $('affiliates-only').checked = false;
@@ -495,17 +618,20 @@
     btn.setAttribute('aria-busy', 'true');
     navigator.geolocation.getCurrentPosition((pos) => {
       btn.removeAttribute('aria-busy');
+      // "Near me" replaces a ZIP or town search.
+      if (place) {
+        $('search').value = '';
+        searchRun++;
+        setPlace(null);
+        applyFilters(false);
+      }
       userLoc = { lat: pos.coords.latitude, lon: pos.coords.longitude };
       if (userMarker) userMarker.setLatLng([userLoc.lat, userLoc.lon]);
       else {
-        userMarker = L.circleMarker([userLoc.lat, userLoc.lon], {
-          radius: 8, weight: 3, color: '#fff', fillColor: '#3d7bff', fillOpacity: 1
-        }).bindTooltip('You are here').addTo(map);
+        userMarker = L.marker([userLoc.lat, userLoc.lon], { icon: locationDot('loc-you'), keyboard: false })
+          .bindTooltip('You are here').addTo(map);
       }
-      const nearest = visible.slice().sort((a, b) => milesBetween(userLoc, a) - milesBetween(userLoc, b)).slice(0, 6);
-      const bounds = L.latLngBounds([[userLoc.lat, userLoc.lon]]);
-      for (const c of nearest) bounds.extend([c.lat, c.lon]);
-      map.flyToBounds(bounds, Object.assign({ maxZoom: 13, duration: 0.8 }, mapPadding()));
+      flyNear(userLoc);
       renderList();
     }, () => {
       btn.removeAttribute('aria-busy');
