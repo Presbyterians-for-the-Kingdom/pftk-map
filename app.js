@@ -110,14 +110,31 @@
   // zooms to max, so the first fit waits until the map has real dimensions.
   map.setView([38.5, -96.5], 4);
   let fitted = false;
+  let pendingFit = null;
   new ResizeObserver(() => {
     map.invalidateSize();
-    if (!fitted && map.getSize().x > 0) {
+    if (map.getSize().x === 0) return;
+    if (pendingFit) {
+      // A search made while the map was hidden.
+      map.fitBounds(pendingFit.bounds, Object.assign({ maxZoom: pendingFit.maxZoom }, mapPadding()));
+      pendingFit = null;
+      fitted = true;
+    } else if (!fitted) {
       fitted = true;
       // A linked church sets its own view once data loads.
       if (!params.get('church')) map.fitBounds(US_BOUNDS, mapPadding());
     }
   }).observe($('map'));
+
+  // Flying a zero-size map (a hidden embed) throws, so the move waits
+  // until the map is shown.
+  function flyToFit(bounds, maxZoom, duration) {
+    if (map.getSize().x === 0) {
+      pendingFit = { bounds, maxZoom };
+      return;
+    }
+    map.flyToBounds(bounds, Object.assign({ maxZoom, duration }, mapPadding()));
+  }
 
   map.createPane('affiliates');
   map.getPane('affiliates').style.zIndex = 640;
@@ -297,7 +314,7 @@
 
     if (fit && visible.length && visible.length < churches.length) {
       const bounds = L.latLngBounds(visible.map((c) => [c.lat, c.lon]));
-      map.flyToBounds(bounds, Object.assign({ maxZoom: 12, duration: 0.6 }, mapPadding()));
+      flyToFit(bounds, 12, 0.6);
     }
     renderList();
   }
@@ -534,7 +551,7 @@
     const nearest = visible.slice().sort((a, b) => milesBetween(point, a) - milesBetween(point, b)).slice(0, 6);
     const bounds = L.latLngBounds([[point.lat, point.lon]]);
     for (const c of nearest) bounds.extend([c.lat, c.lon]);
-    map.flyToBounds(bounds, Object.assign({ maxZoom: 13, duration: 0.8 }, mapPadding()));
+    flyToFit(bounds, 13, 0.8);
   }
 
   // A 5-digit ZIP always searches by location. Other text filters churches
