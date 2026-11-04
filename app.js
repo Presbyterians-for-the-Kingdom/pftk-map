@@ -179,6 +179,7 @@
       pendingFit = { bounds, maxZoom };
       return;
     }
+    fitted = true; // so the first whole-US fit doesn't undo this move
     map.flyToBounds(bounds, Object.assign({ maxZoom, duration }, mapPadding()));
   }
 
@@ -674,15 +675,28 @@
     applyFilters(false);
   });
 
-  $('near-me').addEventListener('click', () => {
+  // Set once the visitor searches, drags or zooms the map, or opens a
+  // church, so a location that arrives late doesn't yank the map away.
+  let visitorActed = false;
+  const acted = () => { visitorActed = true; };
+  map.on('dragstart', acted);
+  $('map').addEventListener('wheel', acted, { passive: true });
+  $('map').addEventListener('touchstart', acted, { passive: true });
+  $('search').addEventListener('input', acted);
+  $('results').addEventListener('click', acted);
+
+  // quiet: the automatic request on open. It shows no error and gives up
+  // if the visitor has already started looking around.
+  function locate(quiet) {
     if (!navigator.geolocation) {
-      toast('Location isn’t available in this browser');
+      if (!quiet) toast('Location isn’t available in this browser');
       return;
     }
     const btn = $('near-me');
     btn.setAttribute('aria-busy', 'true');
     navigator.geolocation.getCurrentPosition((pos) => {
       btn.removeAttribute('aria-busy');
+      if (quiet && visitorActed) return;
       // "Near me" replaces a ZIP or town search.
       if (place) {
         $('search').value = '';
@@ -700,9 +714,27 @@
       renderList();
     }, () => {
       btn.removeAttribute('aria-busy');
-      toast('Couldn’t get your location');
+      if (!quiet) toast('Couldn’t get your location');
     }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
+  }
+  $('near-me').addEventListener('click', () => {
+    acted();
+    locate(false);
   });
+
+  // On open, ask for the visitor's location and show their area. Skipped
+  // for a shared church link, and when the browser has already been told
+  // no (asking again would only fail).
+  function locateOnOpen() {
+    if (!navigator.geolocation) return;
+    if (!navigator.permissions) {
+      locate(true);
+      return;
+    }
+    navigator.permissions.query({ name: 'geolocation' })
+      .then((status) => { if (status.state !== 'denied') locate(true); })
+      .catch(() => locate(true));
+  }
 
   // ---------- Mobile bottom sheet ----------
 
@@ -755,6 +787,7 @@
       const linked = params.get('church');
       if (linked && byId.has(linked)) focusChurch(byId.get(linked));
       else if (linked) setActive(null);
+      if (!linked) locateOnOpen();
     })
     .catch((err) => {
       console.error(err);
