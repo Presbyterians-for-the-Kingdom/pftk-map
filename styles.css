@@ -11,10 +11,87 @@
   --gold: #b8862b;
   --focus: #3d7bff;
   --shadow: 0 6px 24px rgba(11, 9, 36, 0.14), 0 1px 3px rgba(11, 9, 36, 0.1);
+  /* Inputs, chips and buttons sit on --field. Filled things (toast,
+     primary button, badges) use --solid with white text. */
+  --field: #ffffff;
+  --solid: #0B0924;
+  --solid-hover: #26234a;
+  --map-bg: #e9edf2;
+  --grip: #cfd1dc;
+  --cluster: rgb(11, 9, 36);
+  --cluster-ring: rgba(11, 9, 36, 0.35);
+  --tag-r3: #e3f1e9;
+  --tag-r2: #e4edf8;
+  --tag-r1: #f3efdf;
+  --tag-aff: #f7eedb;
+  --tag-aff-text: #8a6116;
+  --tiles: none;
+  color-scheme: light;
   --panel-w: 380px;
   --radius: 14px;
   --font: Lexend, system-ui, -apple-system, "Segoe UI", sans-serif;
   --serif: Merriweather, Georgia, serif;
+}
+
+/* Dark mode follows the device setting unless the map's sun/moon button
+   picked one (data-theme on <html>, applied by theme.js). Keep the two
+   blocks below the same. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #ecebf5;
+    --ink-2: #b6b4c9;
+    --ink-3: #8c8aa3;
+    --paper: #15142a;
+    --mist: #201f38;
+    --line: rgba(255, 255, 255, 0.12);
+    --r3: #3f9e6e;
+    --r2: #5b8fd6;
+    --r1: #b09a4a;
+    --gold: #c99a3f;
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
+    --field: #1b1a31;
+    --solid: #4a4594;
+    --solid-hover: #5a55a8;
+    --map-bg: #1c1d24;
+    --grip: #4a4962;
+    --cluster: #4a4594;
+    --cluster-ring: rgba(122, 116, 220, 0.38);
+    --tag-r3: rgba(63, 158, 110, 0.18);
+    --tag-r2: rgba(91, 143, 214, 0.18);
+    --tag-r1: rgba(176, 154, 74, 0.18);
+    --tag-aff: rgba(201, 154, 63, 0.18);
+    --tag-aff-text: #dcb46a;
+    --tiles: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.85) saturate(0.6);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ink: #ecebf5;
+  --ink-2: #b6b4c9;
+  --ink-3: #8c8aa3;
+  --paper: #15142a;
+  --mist: #201f38;
+  --line: rgba(255, 255, 255, 0.12);
+  --r3: #3f9e6e;
+  --r2: #5b8fd6;
+  --r1: #b09a4a;
+  --gold: #c99a3f;
+  --shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
+  --field: #1b1a31;
+  --solid: #4a4594;
+  --solid-hover: #5a55a8;
+  --map-bg: #1c1d24;
+  --grip: #4a4962;
+  --cluster: #4a4594;
+  --cluster-ring: rgba(122, 116, 220, 0.38);
+  --tag-r3: rgba(63, 158, 110, 0.18);
+  --tag-r2: rgba(91, 143, 214, 0.18);
+  --tag-r1: rgba(176, 154, 74, 0.18);
+  --tag-aff: rgba(201, 154, 63, 0.18);
+  --tag-aff-text: #dcb46a;
+  --tiles: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.85) saturate(0.6);
+  color-scheme: dark;
 }
 
 *,
@@ -56,7 +133,7 @@ input {
   top: -40px;
   z-index: 3000;
   padding: 8px 12px;
-  background: var(--ink);
+  background: var(--solid);
   color: #fff;
   border-radius: 8px;
 }
@@ -68,7 +145,7 @@ input {
 #map {
   position: fixed;
   inset: 0 0 0 var(--panel-w);
-  background: #e9edf2;
+  background: var(--map-bg);
 }
 
 /* ---------- Panel ---------- */
@@ -141,7 +218,7 @@ input {
 #search:focus {
   outline: none;
   border-color: var(--ink);
-  background: #fff;
+  background: var(--field);
 }
 
 .icon-btn {
@@ -151,7 +228,7 @@ input {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #fff;
+  background: var(--field);
   cursor: pointer;
 }
 
@@ -204,7 +281,7 @@ input {
   border: 1px solid var(--line);
   border-radius: 999px;
   font-size: 0.82rem;
-  background: #fff;
+  background: var(--field);
   color: var(--ink-2);
   cursor: pointer;
   user-select: none;
@@ -222,8 +299,8 @@ input {
 }
 
 .chip input:checked + span {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--solid);
+  border-color: var(--solid);
   color: #fff;
 }
 
@@ -340,7 +417,7 @@ input {
   font-size: 0.8rem;
   font-weight: 600;
   color: #fff;
-  background: var(--ink);
+  background: var(--solid);
 }
 
 .badge.r3 { background: var(--r3); }
@@ -405,11 +482,38 @@ input {
   height: 36px !important;
   line-height: 36px !important;
   color: var(--ink) !important;
+  background: var(--paper) !important;
+  border-bottom-color: var(--line) !important;
+}
+
+.leaflet-bar a:hover {
+  background: var(--mist) !important;
+}
+
+.theme-btn {
+  display: grid !important;
+  place-items: center;
+}
+
+.theme-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* OSM has no dark tiles, so dark mode inverts the light ones. */
+.leaflet-tile-pane {
+  filter: var(--tiles);
 }
 
 .leaflet-control-attribution {
   font-size: 10px;
-  background: rgba(255, 255, 255, 0.8) !important;
+  background: color-mix(in srgb, var(--paper) 80%, transparent) !important;
+  color: var(--ink-2);
+}
+
+.leaflet-control-attribution a {
+  color: var(--r2);
 }
 
 .leaflet-attribution-flag {
@@ -441,8 +545,8 @@ input {
   border-radius: 50%;
   color: #fff;
   font-weight: 600;
-  background: rgb(11, 9, 36);
-  box-shadow: 0 0 0 6px rgba(11, 9, 36, 0.35), 0 2px 8px rgba(0, 0, 0, 0.35);
+  background: var(--cluster);
+  box-shadow: 0 0 0 6px var(--cluster-ring), 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .cluster-s { font-size: 0.75rem; }
@@ -461,10 +565,16 @@ input {
 }
 
 .loc-place {
-  background: var(--ink);
+  background: var(--solid);
 }
 
 /* ---------- Popup ---------- */
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--paper);
+  color: var(--ink);
+}
 
 .leaflet-popup-content-wrapper {
   border-radius: var(--radius);
@@ -530,10 +640,10 @@ input {
   color: var(--ink);
 }
 
-.tag.r3 { background: #e3f1e9; color: var(--r3); }
-.tag.r2 { background: #e4edf8; color: var(--r2); }
-.tag.r1 { background: #f3efdf; color: var(--r1); }
-.tag.aff { background: #f7eedb; color: #8a6116; }
+.tag.r3 { background: var(--tag-r3); color: var(--r3); }
+.tag.r2 { background: var(--tag-r2); color: var(--r2); }
+.tag.r1 { background: var(--tag-r1); color: var(--r1); }
+.tag.aff { background: var(--tag-aff); color: var(--tag-aff-text); }
 
 .pop-actions {
   display: flex;
@@ -550,7 +660,7 @@ input {
   padding: 0 8px;
   border: 1px solid var(--line);
   border-radius: 9px;
-  background: #fff;
+  background: var(--field);
   color: var(--ink);
   font-size: 0.8rem;
   font-weight: 500;
@@ -560,8 +670,8 @@ input {
 }
 
 .leaflet-container .pop-actions a.primary {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--solid);
+  border-color: var(--solid);
   color: #fff;
 }
 
@@ -571,7 +681,7 @@ input {
 }
 
 .leaflet-container .pop-actions a.primary:hover {
-  background: #26234a;
+  background: var(--solid-hover);
 }
 
 .pop-site {
@@ -595,7 +705,7 @@ input {
   transform: translateX(-50%);
   padding: 9px 16px;
   border-radius: 999px;
-  background: var(--ink);
+  background: var(--solid);
   color: #fff;
   font-size: 0.85rem;
   box-shadow: var(--shadow);
@@ -645,7 +755,7 @@ input {
     width: 40px;
     height: 5px;
     border-radius: 999px;
-    background: #cfd1dc;
+    background: var(--grip);
   }
 
   .sheet-label {
