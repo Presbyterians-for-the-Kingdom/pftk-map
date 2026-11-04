@@ -157,12 +157,14 @@
     showCoverageOnHover: false,
     chunkedLoading: true,
     iconCreateFunction(cluster) {
+      // Area grows with the count (diameter with its square root), so a
+      // cluster of 100 looks about ten times a cluster of 10, capped so
+      // the biggest don't bury the map.
       const n = cluster.getChildCount();
-      const tier = n >= 100 ? 'l' : n >= 20 ? 'm' : 's';
-      const px = tier === 'l' ? 46 : tier === 'm' ? 40 : 34;
+      const px = Math.round(Math.min(72, 16 + 4.2 * Math.sqrt(n)));
       return L.divIcon({
         html: n,
-        className: 'cluster cluster-' + tier,
+        className: 'cluster ' + (px >= 52 ? 'cluster-l' : px >= 36 ? 'cluster-m' : 'cluster-s'),
         iconSize: L.point(px, px)
       });
     }
