@@ -92,6 +92,52 @@
   });
   L.control.zoom({ position: 'topright' }).addTo(map);
 
+  // Light/dark switch under the zoom buttons. theme.js applies a saved
+  // choice on load; with none saved, the device setting decides.
+  const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const SUN = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M11 1h2v4h-2zM11 19h2v4h-2zM1 11h4v2H1zM19 11h4v2h-4zM4.2 5.6l1.4-1.4 2.8 2.8-1.4 1.4zM15.6 17l1.4-1.4 2.8 2.8-1.4 1.4zM17 8.4l-1.4-1.4 2.8-2.8 1.4 1.4zM5.6 19.8l-1.4-1.4L7 15.6 8.4 17z"/></svg>';
+  const MOON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2.5a9.5 9.5 0 1 0 7 15.9A8 8 0 0 1 14.5 2.5Z"/></svg>';
+  function isDark() {
+    const chosen = document.documentElement.dataset.theme;
+    return chosen ? chosen === 'dark' : darkQuery.matches;
+  }
+  const ThemeControl = L.Control.extend({
+    options: { position: 'topright' },
+    onAdd() {
+      const bar = L.DomUtil.create('div', 'leaflet-bar');
+      const btn = L.DomUtil.create('a', 'theme-btn', bar);
+      btn.href = '#';
+      btn.setAttribute('role', 'button');
+      const draw = () => {
+        const dark = isDark();
+        btn.innerHTML = dark ? SUN : MOON;
+        btn.title = dark ? 'Light mode' : 'Dark mode';
+        btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      };
+      draw();
+      darkQuery.addEventListener('change', draw);
+      L.DomEvent.disableClickPropagation(bar);
+      L.DomEvent.on(btn, 'click', (e) => {
+        L.DomEvent.preventDefault(e);
+        const next = isDark() ? 'light' : 'dark';
+        // Picking what the device already uses clears the choice, so the
+        // map follows the device again if its setting later changes.
+        const followDevice = (next === 'dark') === darkQuery.matches;
+        if (followDevice) delete document.documentElement.dataset.theme;
+        else document.documentElement.dataset.theme = next;
+        try {
+          if (followDevice) localStorage.removeItem('pftk-theme');
+          else localStorage.setItem('pftk-theme', next);
+        } catch (err) {
+          // Storage blocked: the choice lasts for this visit.
+        }
+        draw();
+      });
+      return bar;
+    }
+  });
+  new ThemeControl().addTo(map);
+
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
