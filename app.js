@@ -20,6 +20,58 @@
     WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming'
   };
 
+  // ---------- Visit counts (GoatCounter) ----------
+  // Counts are sent to GoatCounter (no cookies, no personal data). Only
+  // what happened is sent: never the visitor's location or what they typed.
+  // Counting runs only on map.pftk.org. Visiting map.pftk.org/#skip-count
+  // stops counting in that browser (for staff); #count-me turns it back on.
+  // #count-debug logs counts to the console instead of sending them.
+  const COUNT_URL = 'https://pftk-map.goatcounter.com/count';
+  const countDebug = location.hash === '#count-debug';
+  let countOff = location.hostname !== 'map.pftk.org' || navigator.webdriver === true;
+  try {
+    if (location.hash === '#skip-count') localStorage.setItem('pftk-skip-count', '1');
+    if (location.hash === '#count-me') localStorage.removeItem('pftk-skip-count');
+    if (localStorage.getItem('pftk-skip-count')) countOff = true;
+  } catch {
+    // Storage blocked: count as normal.
+  }
+  const counted = new Set();
+
+  function count(path, title, event = true) {
+    if (countDebug) {
+      console.info('[count]', path, '|', title);
+      return;
+    }
+    if (countOff) return;
+    const q = new URLSearchParams({
+      p: path,
+      t: title || path,
+      e: event ? 'true' : 'false',
+      s: [screen.width, screen.height, window.devicePixelRatio || 1].join(','),
+      rnd: Math.random().toString(36).slice(2)
+    });
+    if (!event && document.referrer) q.set('r', document.referrer);
+    const url = COUNT_URL + '?' + q;
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon(url)) return;
+    } catch {
+      // Fall through to the image request.
+    }
+    new Image().src = url;
+  }
+
+  // For things that should count once per visit, however often they repeat.
+  function countOnce(path, title) {
+    if (counted.has(path)) return;
+    counted.add(path);
+    count(path, title);
+  }
+
+  // Inside an <iframe> on pftk.org, or opened directly.
+  const embedded = window.top !== window.self;
+  count(embedded ? '/embed' : '/', embedded ? 'Map opened in the pftk.org embed' : 'Map opened directly', false);
+
   // ---------- Safe output helpers ----------
 
   function esc(value) {
@@ -51,6 +103,13 @@
     } catch {
       return url;
     }
+  }
+
+  // "First Presbyterian Church, Dayton OH" for counts: names repeat a lot.
+  function churchLabel(c) {
+    const parts = (c.address || '').split(',').map((x) => x.trim()).filter(Boolean);
+    const town = parts.length >= 3 ? parts[parts.length - 2] : '';
+    return [c.name, [town, (c.state || '').toUpperCase()].filter(Boolean).join(' ')].filter(Boolean).join(', ');
   }
 
   function directionsUrl(c) {
@@ -309,7 +368,10 @@
         pane: c.affiliate ? 'affiliates' : 'markerPane'
       });
       marker.bindPopup(() => buildPopup(c), popupOptions);
-      marker.on('popupopen', () => setActive(c.id));
+      marker.on('popupopen', () => {
+        setActive(c.id);
+        countOnce('church: ' + churchLabel(c), 'Opened ' + churchLabel(c));
+      });
       marker.on('popupclose', () => { if (activeId === c.id) setActive(null); });
       c.marker = marker;
       out.push(c);
@@ -491,6 +553,12 @@
   $('map').addEventListener('click', (e) => {
     const btn = e.target.closest('[data-share]');
     if (btn) share(btn.getAttribute('data-share'));
+    // Popup links and buttons, counted against the open church.
+    const c = byId.get(activeId);
+    const action = e.target.closest('.pop-actions a.primary') ? 'directions'
+      : e.target.closest('.pop a[href]') ? 'website'
+      : btn ? 'share' : null;
+    if (c && action) countOnce(action + ': ' + churchLabel(c), action[0].toUpperCase() + action.slice(1) + ' for ' + churchLabel(c));
   });
 
   $('results').addEventListener('click', (e) => {
@@ -613,6 +681,7 @@
     const tokens = normalize(text).trim().split(' ').filter(Boolean);
     let found = null;
     const zip = text.match(/^(\d{5})(?:-\d{4})?$/);
+    if (tokens.length) countOnce('search', 'Searched');
     if (zip) {
       found = await findZip(zip[1]);
       if (run !== searchRun) return;
@@ -625,6 +694,10 @@
         found = town;
         if (town.others && !town.state) toast(`Showing ${town.label}. Add a state for a different one.`);
       }
+    }
+    if (tokens.length) {
+      const kind = zip ? 'ZIP code' : found ? 'town' : 'church name';
+      countOnce('search: ' + kind, 'Searched by ' + kind);
     }
     setPlace(found);
     filters.tokens = found ? [] : tokens;
@@ -689,13 +762,15 @@
   // if the visitor has already started looking around.
   function locate(quiet) {
     if (!navigator.geolocation) {
-      if (!quiet) toast('Location isn’t available in this browser');
+      if (quiet) countOnce('location: not supported', 'Location not supported by the browser');
+      else toast('Location isn’t available in this browser');
       return;
     }
     const btn = $('near-me');
     btn.setAttribute('aria-busy', 'true');
     navigator.geolocation.getCurrentPosition((pos) => {
       btn.removeAttribute('aria-busy');
+      if (quiet) countOnce('location: allowed', 'Location allowed on open');
       if (quiet && visitorActed) return;
       // "Near me" replaces a ZIP or town search.
       if (place) {
@@ -712,13 +787,18 @@
       }
       flyNear(userLoc);
       renderList();
-    }, () => {
+    }, (err) => {
       btn.removeAttribute('aria-busy');
+      if (quiet) {
+        if (err && err.code === 1) countOnce('location: refused', 'Location refused on open');
+        else countOnce('location: failed', 'Location allowed but not found on open');
+      }
       if (!quiet) toast('Couldn’t get your location');
     }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
   }
   $('near-me').addEventListener('click', () => {
     acted();
+    countOnce('near me', 'Tapped Near me');
     locate(false);
   });
 
@@ -732,7 +812,10 @@
       return;
     }
     navigator.permissions.query({ name: 'geolocation' })
-      .then((status) => { if (status.state !== 'denied') locate(true); })
+      .then((status) => {
+        if (status.state !== 'denied') locate(true);
+        else countOnce('location: refused before', 'Location refused on an earlier visit');
+      })
       .catch(() => locate(true));
   }
 
@@ -785,8 +868,10 @@
       applyFilters(false);
 
       const linked = params.get('church');
-      if (linked && byId.has(linked)) focusChurch(byId.get(linked));
-      else if (linked) setActive(null);
+      if (linked && byId.has(linked)) {
+        count('shared link: ' + churchLabel(byId.get(linked)), 'Shared link opened for ' + churchLabel(byId.get(linked)));
+        focusChurch(byId.get(linked));
+      } else if (linked) setActive(null);
       if (!linked) locateOnOpen();
     })
     .catch((err) => {

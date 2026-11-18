@@ -11,8 +11,8 @@
     script-src 'self';
     style-src 'self' https://fonts.googleapis.com;
     font-src https://fonts.gstatic.com;
-    img-src 'self' data: https://tile.openstreetmap.org;
-    connect-src 'self';
+    img-src 'self' data: https://tile.openstreetmap.org https://pftk-map.goatcounter.com;
+    connect-src 'self' https://pftk-map.goatcounter.com;
     base-uri 'none';
     form-action 'none';
     object-src 'none';
@@ -49,8 +49,8 @@
   <link rel="stylesheet" href="vendor/leaflet.markercluster/MarkerCluster.css">
   <!-- Bump ?v= on all three lines whenever styles.css, theme.js or app.js
        changes, so browsers fetch the new files instead of a cached copy. -->
-  <link rel="stylesheet" href="styles.css?v=8">
-  <script src="theme.js?v=8"></script>
+  <link rel="stylesheet" href="styles.css?v=9">
+  <script src="theme.js?v=9"></script>
 </head>
 
 <body>
@@ -111,7 +111,7 @@
 
   <script src="vendor/leaflet/leaflet.js" defer></script>
   <script src="vendor/leaflet.markercluster/leaflet.markercluster.js" defer></script>
-  <script src="app.js?v=8" defer></script>
+  <script src="app.js?v=9" defer></script>
 </body>
 
 </html>
