@@ -14,3 +14,4 @@ Then, go to your browser and type the URL: http://localhost:8000 to see the PC(U
 - After each sync, `scripts/check_locations.py` checks every pin against its address's ZIP and town and lists any that are more than 25 miles off on the workflow run's summary page. Run it locally with `python scripts/check_locations.py > location-report.csv`.
 - When you change `app.js`, `styles.css` or `theme.js`, bump the `?v=` number on all three links in `index.html`. Otherwise returning visitors can get the old file from their browser's cache for a while.
 - `og-image.png` is the link preview image for Facebook, iMessage, Slack and similar. Regenerate it with `python scripts/make_og_image.py` (needs Pillow) after big data changes.
+- `banner.jpg` is the "Finding a Congregation" header image on pftk.org/map. Regenerate it with `python scripts/make_banner.py` (needs Pillow), then upload it to that strip in the Wix editor by hand. Its overlay looks best at about 20%.
