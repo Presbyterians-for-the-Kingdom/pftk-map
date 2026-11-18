@@ -68,6 +68,31 @@
     count(path, title);
   }
 
+  // Total visits shown under "About the ratings": direct opens plus opens in
+  // the pftk.org embed, from GoatCounter's public counter. Needs "Allow using
+  // the visitor counter" on in GoatCounter's settings; stays hidden until then
+  // or if the request fails.
+  const COUNTER_URL = 'https://pftk-map.goatcounter.com/counter/';
+  function visitsFor(path) {
+    return fetch(COUNTER_URL + encodeURIComponent(path) + '.json')
+      .then((res) => {
+        if (res.status === 404) return 0; // no visits yet on that path
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json().then((d) => Number(String(d.count || '').replace(/\D/g, '')) || 0);
+      });
+  }
+  Promise.all([visitsFor('/'), visitsFor('/embed')])
+    .then(([direct, embed]) => {
+      const total = direct + embed;
+      if (!total) return;
+      const el = $('visits');
+      el.textContent = total.toLocaleString('en-US') + (total === 1 ? ' visit' : ' visits');
+      el.hidden = false;
+    })
+    .catch(() => {
+      // Counter off or unreachable: show nothing.
+    });
+
   // Inside an <iframe> on pftk.org, or opened directly.
   const embedded = window.top !== window.self;
   count(embedded ? '/embed' : '/', embedded ? 'Map opened in the pftk.org embed' : 'Map opened directly', false);
