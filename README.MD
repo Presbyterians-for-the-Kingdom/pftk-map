@@ -26,6 +26,8 @@ What's counted, each at most once per visit:
 - Searching, and whether it was by ZIP code, town or church name. What was typed is never sent.
 - The location request on open: allowed, refused, refused on an earlier visit, not found, or not supported. The location itself is never sent. Taps on Near me.
 
+The total number of visits (direct plus embed) is shown under "About the ratings". It comes from GoatCounter's public counter, which needs "Allow using the visitor counter" switched on in GoatCounter's settings; if that's off, the line stays hidden.
+
 Staff can stop their own visits being counted by opening `https://map.pftk.org/#skip-count` once in each browser they use; `#count-me` turns counting back on. `#count-debug` logs each count to the browser console instead of sending it.
 
 The GoatCounter site code is `pftk-map`. If it ever changes, update `COUNT_URL` in `app.js` and the two `goatcounter.com` addresses in the security policy at the top of `index.html`.
