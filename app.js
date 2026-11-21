@@ -294,7 +294,7 @@
       const n = cluster.getChildCount();
       const px = Math.round(Math.min(72, 16 + 4.2 * Math.sqrt(n)));
       return L.divIcon({
-        html: n,
+        html: `${n}<span class="sr-only"> churches</span>`,
         className: 'cluster ' + (px >= 52 ? 'cluster-l' : px >= 36 ? 'cluster-m' : 'cluster-s'),
         iconSize: L.point(px, px)
       });
@@ -314,7 +314,7 @@
 
     const site = safeHttpUrl(c.url);
     return `<div class="pop">
-      <h2>${esc(c.name)}</h2>
+      <h2 tabindex="-1">${esc(c.name)}</h2>
       ${c.address ? `<p class="pop-addr">${esc(c.address)}</p>` : ''}
       ${tags.length ? `<div class="pop-tags">${tags.join('')}</div>` : ''}
       ${site ? `<a class="pop-site" href="${esc(site)}" target="_blank" rel="noopener">${esc(displayHost(site))}</a>` : ''}
@@ -360,6 +360,23 @@
   }
 
   // Coordinates are [lon, lat] per the GeoJSON spec.
+  // The popup comes after every map marker in the page, so without this a
+  // keyboard or screen-reader user opening a church from the list would be
+  // hundreds of Tab presses from its Directions and Website buttons. Focus
+  // moves to the popup's heading on open and back where it came from on close.
+  function focusPopup(c) {
+    const el = c.marker.getPopup() && c.marker.getPopup().getElement();
+    const heading = el && el.querySelector('.pop h2');
+    if (heading) heading.focus({ preventScroll: true });
+  }
+
+  function returnFocus(c) {
+    const pin = c.marker.getElement();
+    const row = document.querySelector(`.result[data-id="${CSS.escape(c.id)}"]`);
+    const target = c.returnTo === 'marker' && pin ? pin : row || pin || $('results');
+    target.focus({ preventScroll: true });
+  }
+
   function parseChurches(geojson) {
     const out = [];
     for (const f of geojson.features) {
@@ -393,15 +410,25 @@
       const marker = L.marker([lat, lon], {
         icon: iconFor(c),
         title: c.name,
+        alt: c.name, // otherwise screen readers hear "Marker" for every pin
         riseOnHover: true,
         pane: c.affiliate ? 'affiliates' : 'markerPane'
       });
       marker.bindPopup(() => buildPopup(c), popupOptions);
       marker.on('popupopen', () => {
+        // Back to the pin if it was opened from the pin, else to the list.
+        const opener = document.activeElement;
+        c.returnTo = opener && opener.classList && opener.classList.contains('leaflet-marker-icon') ? 'marker' : 'list';
+        focusPopup(c);
         setActive(c.id);
         countOnce('church: ' + churchLabel(c), 'Opened ' + churchLabel(c));
       });
-      marker.on('popupclose', () => { if (activeId === c.id) setActive(null); });
+      marker.on('popupclose', () => {
+        const el = marker.getPopup() && marker.getPopup().getElement();
+        const focusWasInPopup = document.activeElement === document.body || (el && el.contains(document.activeElement));
+        if (activeId === c.id) setActive(null);
+        if (focusWasInPopup) returnFocus(c);
+      });
       c.marker = marker;
       out.push(c);
       byId.set(c.id, c);
@@ -495,8 +522,8 @@
     for (const c of items.slice(0, LIST_LIMIT)) {
       const badge = c.affiliate
         ? '<img src="denominational-seals/pftk.png" alt="PftK affiliate" width="26" height="26">'
-        : c.included ? '<span class="badge inc" title="Included by PftK">+</span>'
-        : `<span class="badge r${esc(c.rating)}" title="${esc(RATING_LABELS[c.rating] || '')}">${esc(c.rating || '?')}</span>`;
+        : c.included ? '<span class="badge inc" title="Included by PftK"><span aria-hidden="true">+</span><span class="sr-only">Included by PftK</span></span>'
+        : `<span class="badge r${esc(c.rating)}" title="${esc(RATING_LABELS[c.rating] || '')}"><span aria-hidden="true">${esc(c.rating || '?')}</span><span class="sr-only">${esc(RATING_LABELS[c.rating] || 'Not rated')}</span></span>`;
       const dist = near ? `<span class="result-dist">${c.dist < 10 ? c.dist.toFixed(1) : Math.round(c.dist)} mi</span>` : '<span></span>';
       html.push(`<li><button type="button" class="result${c.id === activeId ? ' is-active' : ''}" data-id="${esc(c.id)}">
         ${badge}
