@@ -6,7 +6,8 @@ data/PCUSA_Congregations.geojson, keeping ONLY the public-safe columns.
 
 This reconciles the automated pipeline with the transform the mapping
 chairman was running by hand against a downloaded copy of the workbook:
-  - only congregations with lib_level 0 or 1 are published
+  - only congregations with lib_level 2 or 3 are published, plus any whose
+    map_override cell is true (published without their rating; see below)
   - size is bucketed into XS/S/M/L/XL rather than published as a raw number
   - url is normalized (scheme forced to https, query/fragment stripped)
   - the public property set is church_name, lib_level, full_address, url,
@@ -79,8 +80,15 @@ FORBIDDEN_COLUMNS = [
     "pftk",
 ]
 
-# Only congregations with lib_level in this set are published at all.
+# Only congregations with lib_level in this set are published at all...
 PUBLISHED_LIB_LEVELS = {3, 2}
+
+# ...unless their map_override cell (column AB) is true: PftK has chosen to
+# include them anyway, e.g. where there are few other churches nearby. Their
+# rating is NOT published (lib_level is written as null) and they're flagged
+# with OVERRIDE_OUTPUT_KEY so the map shows them as "Included by PftK".
+OVERRIDE_COLUMN_CANDIDATES = ["map_override", "map override", "override"]
+OVERRIDE_OUTPUT_KEY = "included"
 
 SIZE_BUCKET_BINS = [0, 40, 100, 300, 800, 100000]  # right-open: [a, b)
 SIZE_BUCKET_LABELS = ["XS", "S", "M", "L", "XL"]
@@ -196,6 +204,16 @@ def parse_lib_level(value):
     return int(f)
 
 
+def is_true(value):
+    """Excel TRUE/FALSE arrive from Graph as booleans; also accept the usual
+    typed spellings. Anything else, including blank, is false."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return value == 1
+    return str(value or "").strip().lower() in {"true", "yes", "y", "x", "1"}
+
+
 def build_properties(row, affiliate_col):
     properties = {}
     for col in ALLOWED_COLUMNS:
@@ -254,7 +272,16 @@ def main():
             file=sys.stderr,
         )
 
+    override_col = find_column(headers, OVERRIDE_COLUMN_CANDIDATES)
+    if not override_col:
+        print(
+            f"WARNING: no column matching {OVERRIDE_COLUMN_CANDIDATES} found -- "
+            f"only lib_level {sorted(PUBLISHED_LIB_LEVELS)} will be published.",
+            file=sys.stderr,
+        )
+
     features = []
+    included_by_override = 0
     skipped_no_coords = 0
     skipped_no_name = 0
     skipped_lib_level = 0
@@ -284,12 +311,19 @@ def main():
             continue
 
         lib_level = parse_lib_level(row.get("lib_level"))
-        if lib_level not in PUBLISHED_LIB_LEVELS:
+        overridden = lib_level not in PUBLISHED_LIB_LEVELS and override_col and is_true(row.get(override_col))
+        if lib_level not in PUBLISHED_LIB_LEVELS and not overridden:
             skipped_lib_level += 1
             continue
 
         properties = build_properties(row, affiliate_col)
-        properties["lib_level"] = lib_level
+        if overridden:
+            # Keep the unpublished rating private.
+            properties["lib_level"] = None
+            properties[OVERRIDE_OUTPUT_KEY] = True
+            included_by_override += 1
+        else:
+            properties["lib_level"] = lib_level
 
         features.append({
             "id": str(i),
@@ -308,7 +342,8 @@ def main():
         f.write("\n]}\n")
 
     print(
-        f"Wrote {len(features)} features to {OUTPUT_PATH} "
+        f"Wrote {len(features)} features to {OUTPUT_PATH}, "
+        f"{included_by_override} of them included by {override_col or 'map_override'} "
         f"({skipped_no_coords} skipped for missing/invalid coordinates, "
         f"{skipped_no_name} skipped for missing church_name, "
         f"{skipped_lib_level} skipped for lib_level not in {sorted(PUBLISHED_LIB_LEVELS)})."

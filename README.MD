@@ -9,6 +9,7 @@ Then, go to your browser and type the URL: http://localhost:8000 to see the PC(U
 - The sidebar holds search, "near me", rating and affiliate filters, and a list of the churches in view. On phones it becomes a bottom sheet you can drag up.
 - Church links (`?church=<id>`) use a short hash of the church's name and address, so they keep working when the sync reorders rows. They change if a church's name or address changes.
 - Everything shown comes from the SharePoint sheet (via the sync) or is PftK's own wording.
+- Churches rated 2 or 3 are published. A church with any other rating is also published when its `map_override` cell (column AB) is TRUE: it appears as "Included by PftK", without its rating, which stays private.
 - Searching a ZIP code, or a town with no listed church (or with a state, like "Dayton OH"), shows the churches nearest it. The ZIP and town locations in `data/places/` come from the US Census Bureau's public-domain Gazetteer files. They're only used to place a search, and a search downloads only the one small file it needs. Rebuild them with `python scripts/build_places.py <gazetteer_dir>` when the Census publishes a new year.
 - `data/PCUSA_Congregations.geojson` is written compactly, one church per line, so it loads faster and a change to one church is a one-line diff.
 - After each sync, `scripts/check_locations.py` checks every pin against its address's ZIP and town and lists any that are more than 25 miles off on the workflow run's summary page. Run it locally with `python scripts/check_locations.py > location-report.csv`.
