@@ -25,6 +25,8 @@
   --tag-r1: #f3efdf;
   --tag-aff: #f7eedb;
   --tag-aff-text: #8a6116;
+  --inc: #6c6a88;
+  --tag-inc: #ecebf3;
   --tiles: none;
   color-scheme: light;
   --panel-w: 380px;
@@ -61,6 +63,8 @@
     --tag-r1: rgba(176, 154, 74, 0.18);
     --tag-aff: rgba(201, 154, 63, 0.18);
     --tag-aff-text: #dcb46a;
+    --inc: #9d9abd;
+    --tag-inc: rgba(157, 154, 189, 0.18);
     --tiles: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.85) saturate(0.6);
     color-scheme: dark;
   }
@@ -90,6 +94,8 @@
   --tag-r1: rgba(176, 154, 74, 0.18);
   --tag-aff: rgba(201, 154, 63, 0.18);
   --tag-aff-text: #dcb46a;
+  --inc: #9d9abd;
+  --tag-inc: rgba(157, 154, 189, 0.18);
   --tiles: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.85) saturate(0.6);
   color-scheme: dark;
 }
@@ -308,6 +314,7 @@ input {
 .chip-r2 input:checked + span { background: var(--r2); border-color: var(--r2); }
 .chip-r1 input:checked + span { background: var(--r1); border-color: var(--r1); }
 .chip-aff input:checked + span { background: var(--gold); border-color: var(--gold); }
+.chip-inc input:checked + span { background: var(--inc); border-color: var(--inc); }
 
 .chip input:checked + span b {
   background: rgba(255, 255, 255, 0.22);
@@ -423,6 +430,7 @@ input {
 .badge.r3 { background: var(--r3); }
 .badge.r2 { background: var(--r2); }
 .badge.r1 { background: var(--r1); }
+.badge.inc { background: var(--inc); }
 
 .about {
   border-top: 1px solid var(--line);
@@ -543,6 +551,7 @@ input {
 .pin-r2 { --ring: var(--r2); --halo: rgba(44, 100, 168, 0.3); }
 .pin-r1 { --ring: var(--r1); --halo: rgba(122, 106, 42, 0.3); }
 .pin-aff { --ring: var(--gold); --halo: rgba(184, 134, 43, 0.35); }
+.pin-inc { --ring: var(--inc); --halo: rgba(108, 106, 136, 0.3); }
 
 .pin.is-active {
   box-shadow:
@@ -656,6 +665,7 @@ input {
 .tag.r2 { background: var(--tag-r2); color: var(--r2); }
 .tag.r1 { background: var(--tag-r1); color: var(--r1); }
 .tag.aff { background: var(--tag-aff); color: var(--tag-aff-text); }
+.tag.inc { background: var(--tag-inc); color: var(--inc); }
 
 .pop-actions {
   display: flex;

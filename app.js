@@ -272,7 +272,7 @@
 
   const icons = {};
   function iconFor(c) {
-    const key = c.affiliate ? 'aff' : 'r' + (c.rating || 0);
+    const key = c.affiliate ? 'aff' : c.included ? 'inc' : 'r' + (c.rating || 0);
     if (!icons[key]) {
       icons[key] = c.affiliate
         ? L.icon({ iconUrl: 'denominational-seals/pftk.png', iconSize: [34, 34], iconAnchor: [17, 17], popupAnchor: [0, -14], className: 'pin pin-aff' })
@@ -309,6 +309,7 @@
   function buildPopup(c) {
     const tags = [];
     if (c.affiliate) tags.push('<span class="tag aff">PftK affiliate</span>');
+    if (c.included) tags.push('<span class="tag inc">Included by PftK</span>');
     if (RATING_LABELS[c.rating]) tags.push(`<span class="tag r${c.rating}">${c.rating} · ${RATING_LABELS[c.rating]}</span>`);
 
     const site = safeHttpUrl(c.url);
@@ -378,6 +379,9 @@
         name: p.church_name,
         lat, lon,
         rating: RATING_LABELS[rating] ? rating : null,
+        // Below the rating bar but placed on the map by PftK (the sheet's
+        // map_override column). Published without a rating.
+        included: !RATING_LABELS[rating] && isTruthy(p.included),
         address,
         url: p.url,
         maps: p.google_maps_url,
@@ -409,7 +413,7 @@
   // ---------- Filtering & search ----------
 
   const filters = {
-    ratings: new Set(['3', '2', '1']),
+    ratings: new Set(['3', '2', '1', 'inc']),
     affiliatesOnly: false,
     tokens: []
   };
@@ -426,7 +430,8 @@
 
   function passes(c) {
     if (filters.affiliatesOnly && !c.affiliate) return false;
-    if (RATING_LABELS[c.rating] ? !filters.ratings.has(String(c.rating)) : !allRatingsChecked()) return false;
+    const key = c.included ? 'inc' : RATING_LABELS[c.rating] ? String(c.rating) : null;
+    if (key ? !filters.ratings.has(key) : !allRatingsChecked()) return false;
     for (const t of filters.tokens) if (!tokenMatches(c, t)) return false;
     return true;
   }
@@ -490,6 +495,7 @@
     for (const c of items.slice(0, LIST_LIMIT)) {
       const badge = c.affiliate
         ? '<img src="denominational-seals/pftk.png" alt="PftK affiliate" width="26" height="26">'
+        : c.included ? '<span class="badge inc" title="Included by PftK">+</span>'
         : `<span class="badge r${esc(c.rating)}" title="${esc(RATING_LABELS[c.rating] || '')}">${esc(c.rating || '?')}</span>`;
       const dist = near ? `<span class="result-dist">${c.dist < 10 ? c.dist.toFixed(1) : Math.round(c.dist)} mi</span>` : '<span></span>';
       html.push(`<li><button type="button" class="result${c.id === activeId ? ' is-active' : ''}" data-id="${esc(c.id)}">
@@ -890,6 +896,9 @@
       }
       churches = parseChurches(geojson);
       if (churches.some((c) => c.rating === 1)) document.querySelector('.chip-r1').hidden = false;
+      if (churches.some((c) => c.included)) {
+        for (const el of document.querySelectorAll('.chip-inc, .about-inc')) el.hidden = false;
+      }
       applyFilters(false);
 
       const linked = params.get('church');
