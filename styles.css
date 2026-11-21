@@ -1,7 +1,7 @@
 :root {
   --ink: #0B0924;
   --ink-2: #4a4862;
-  --ink-3: #7a7891;
+  --ink-3: #6e6c86;
   --paper: #ffffff;
   --mist: #F2F3F7;
   --line: rgba(11, 9, 36, 0.12);
@@ -25,7 +25,10 @@
   --tag-r1: #f3efdf;
   --tag-aff: #f7eedb;
   --tag-aff-text: #8a6116;
-  --inc: #6c6a88;
+  --inc: #64627f;
+  /* Text on the rating fills (badges, selected chips): white in light mode,
+     dark in dark mode, where the fills are lighter. */
+  --on-fill: #ffffff;
   --tag-inc: #ecebf3;
   --tiles: none;
   color-scheme: light;
@@ -58,12 +61,13 @@
     --grip: #4a4962;
     --cluster: #4a4594;
     --cluster-ring: rgba(122, 116, 220, 0.38);
-    --tag-r3: rgba(63, 158, 110, 0.18);
-    --tag-r2: rgba(91, 143, 214, 0.18);
+    --tag-r3: rgba(63, 158, 110, 0.12);
+    --tag-r2: rgba(91, 143, 214, 0.12);
     --tag-r1: rgba(176, 154, 74, 0.18);
     --tag-aff: rgba(201, 154, 63, 0.18);
     --tag-aff-text: #dcb46a;
     --inc: #9d9abd;
+    --on-fill: #0b0924;
     --tag-inc: rgba(157, 154, 189, 0.18);
     --tiles: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.85) saturate(0.6);
     color-scheme: dark;
@@ -89,12 +93,13 @@
   --grip: #4a4962;
   --cluster: #4a4594;
   --cluster-ring: rgba(122, 116, 220, 0.38);
-  --tag-r3: rgba(63, 158, 110, 0.18);
-  --tag-r2: rgba(91, 143, 214, 0.18);
+  --tag-r3: rgba(63, 158, 110, 0.12);
+  --tag-r2: rgba(91, 143, 214, 0.12);
   --tag-r1: rgba(176, 154, 74, 0.18);
   --tag-aff: rgba(201, 154, 63, 0.18);
   --tag-aff-text: #dcb46a;
   --inc: #9d9abd;
+  --on-fill: #0b0924;
   --tag-inc: rgba(157, 154, 189, 0.18);
   --tiles: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.85) saturate(0.6);
   color-scheme: dark;
@@ -131,6 +136,19 @@ input {
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
+}
+
+/* Read by screen readers, not shown. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .skip-link {
@@ -219,6 +237,11 @@ input {
   border-radius: 10px;
   background: var(--mist);
   transition: border-color 0.15s, background 0.15s;
+}
+
+#search::placeholder {
+  color: var(--ink-3);
+  opacity: 1;
 }
 
 #search:focus {
@@ -315,6 +338,11 @@ input {
 .chip-r1 input:checked + span { background: var(--r1); border-color: var(--r1); }
 .chip-aff input:checked + span { background: var(--gold); border-color: var(--gold); }
 .chip-inc input:checked + span { background: var(--inc); border-color: var(--inc); }
+.chip-r3 input:checked + span,
+.chip-r2 input:checked + span,
+.chip-r1 input:checked + span,
+.chip-inc input:checked + span { color: var(--on-fill); }
+.chip-aff input:checked + span { color: #0b0924; } /* white on gold is too faint */
 
 .chip input:checked + span b {
   background: rgba(255, 255, 255, 0.22);
@@ -431,6 +459,7 @@ input {
 .badge.r2 { background: var(--r2); }
 .badge.r1 { background: var(--r1); }
 .badge.inc { background: var(--inc); }
+.badge.r3, .badge.r2, .badge.r1, .badge.inc { color: var(--on-fill); }
 
 .about {
   border-top: 1px solid var(--line);
