@@ -112,7 +112,7 @@ def main():
     small_b = font("segoeuib.ttf", 21)
     small = font("segoeui.ttf", 21)
     y = 410 * SCALE
-    for color, label in [(R3, "Great fit"), (R2, "Good fit"), (GOLD, "PftK affiliate")]:
+    for color, label in [(R3, "Conservative"), (R2, "Moderate"), (GOLD, "PftK affiliate")]:
         d = 7 * SCALE
         cy = y + 14 * SCALE
         draw.ellipse([x0, cy - d, x0 + 2 * d, cy + d], fill=color)
