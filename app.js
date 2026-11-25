@@ -6,7 +6,7 @@
   const params = new URLSearchParams(location.search);
 
   const LIST_LIMIT = 150;
-  const RATING_LABELS = { 3: 'Conservative', 2: 'Moderate', 1: 'Out of necessity' };
+  const RATING_LABELS = { 3: 'Great Fit', 2: 'Good Fit', 1: 'Traditionalists Welcome' };
   const STATES = {
     AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California', CO: 'Colorado',
     CT: 'Connecticut', DE: 'Delaware', DC: 'District of Columbia', FL: 'Florida', GA: 'Georgia',
